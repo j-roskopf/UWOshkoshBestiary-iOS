@@ -68,13 +68,6 @@ fi
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
-		<key>382CE480881F425EAE89B4E9</key>
-		<dict>
-			<key>fileRef</key>
-			<string>26EC763F841E431EAFECBE8F</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>84343CC9196CACF700D107C6</key>
 		<dict>
 			<key>fileEncoding</key>
@@ -440,7 +433,7 @@ fi
 				<string>D85286F11943943500DE5424</string>
 				<string>D85286EF1943943500DE5424</string>
 				<string>D85286EB1943943500DE5424</string>
-				<string>382CE480881F425EAE89B4E9</string>
+				<string>E8C0E2105B8B4D8EBEA41865</string>
 			</array>
 			<key>isa</key>
 			<string>PBXFrameworksBuildPhase</string>
@@ -1499,6 +1492,13 @@ fi
 		<dict>
 			<key>fileRef</key>
 			<string>D8F81CCF194CE4B40073D7DD</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E8C0E2105B8B4D8EBEA41865</key>
+		<dict>
+			<key>fileRef</key>
+			<string>26EC763F841E431EAFECBE8F</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
