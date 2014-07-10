@@ -98,6 +98,66 @@ CLLocationManager *locationManager;
     
 
 }
+- (IBAction)discardSubmission:(id)sender {
+    
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"Confirm discard"
+                          message:@"This cannot be undone"
+                          delegate:self  // set nil if you don't want the yes button callback
+                          cancelButtonTitle:@"No"
+                          otherButtonTitles:@"Yes", nil];
+    [alert show];
+
+}
+
+
+// yes button callback
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:
+(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        
+        audioData = nil;
+        audioUrl = @"";
+        
+        _firstNameTextField.text = @"";
+        _lastNameTextField.text = @"";
+        _emailTextField.text = @"";
+
+        [_affiliationSegControl setSelectedSegmentIndex:0];
+
+        
+        _groupPhylaTextField.text = @"Group/Phyla";
+        _commonNameTextField.text = @"";
+        _speciesTextField.text = @"";
+        _amountTextField.text = @"";
+        _behavioralTextField.text = @"";
+        _countyTextField.text = @"County";
+        
+
+        [_observationTechSegControl setSelectedSegmentIndex:0];
+
+        _observationTextField.text = @"";
+        _ecosystemTextField.text = @"";
+        _additionalTextField.text = @"";
+        _longitudeTextField.text = @"";
+        _latitudeTextField.text = @"";
+        _altitudeTextField.text = @"";
+        
+        rain = 0;
+        temperature = 0;
+        windSpeed = 0;
+        windDirection = 0;
+        pressure = 0;
+        precipitationMeasure = @"3h";
+        
+
+        [_locationSegControl setSelectedSegmentIndex:0];
+        
+        _existingSubmission = NO;
+
+
+    }
+}
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
@@ -258,7 +318,7 @@ CLLocationManager *locationManager;
         
         audioUrl = _existingSighting.audioUrl;
         
-        NSLog([NSString stringWithFormat:@"second Log with URl: %@",audioUrl]);
+
 
 
         
@@ -652,7 +712,7 @@ CLLocationManager *locationManager;
             //Shouldn't be any need to re-save the weather or date
 
             [[_existingSighting managedObjectContext]save:&error];
-            
+
 
             [self.navigationController popViewControllerAnimated:YES];
             
@@ -764,8 +824,14 @@ CLLocationManager *locationManager;
         }
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Submission saved to local storage" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil,nil];
         [alert show];
+        
+        _existingSubmission = true;
+        [self.tabBarController setSelectedIndex:1];
+        
 
     }
+    
+    
     
     
     
@@ -899,6 +965,15 @@ CLLocationManager *locationManager;
     
 }
 - (IBAction)collectLocationManually:(id)sender {
+    
+    //Starts location object
+    if(locationManager == nil)
+        locationManager = [[CLLocationManager alloc]init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    locationManager.distanceFilter = 100;
+    [locationManager startUpdatingLocation];
+    [locationManager startUpdatingHeading];
 }
 
 @end

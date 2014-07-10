@@ -82,7 +82,7 @@
     
     cell.textLabel.text = dateString;
 
-    cell.detailTextLabel.text = [s email];
+    cell.detailTextLabel.text = [s group];
     
     UIImage *image = [UIImage imageWithData:[s image]];
     
@@ -92,13 +92,6 @@
 
     }
 
-    
-    
-    
-    
-    
-    
-    
     
     return cell;
 }
