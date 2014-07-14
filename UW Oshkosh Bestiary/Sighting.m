@@ -2,7 +2,7 @@
 //  Sighting.m
 //  UW Oshkosh Bestiary
 //
-//  Created by Joe on 6/15/14.
+//  Created by Administator on 7/10/14.
 //  Copyright (c) 2014 UW Oshkosh. All rights reserved.
 //
 
@@ -15,8 +15,8 @@
 @dynamic affiliation;
 @dynamic altitude;
 @dynamic amount;
-@dynamic audioUrl;
 @dynamic audioData;
+@dynamic audioUrl;
 @dynamic behavorialDescription;
 @dynamic commonName;
 @dynamic county;
@@ -31,14 +31,16 @@
 @dynamic longitude;
 @dynamic observationalTechniqueOther;
 @dynamic precipitation;
+@dynamic precipitationMeasure;
 @dynamic pressure;
 @dynamic privacy;
 @dynamic species;
 @dynamic technique;
 @dynamic temperature;
+@dynamic videoUrl;
 @dynamic windDirection;
 @dynamic windSpeed;
-@dynamic precipitationMeasure;
-@dynamic videoUrl;
+@dynamic photoTime;
+@dynamic videoTime;
 
 @end

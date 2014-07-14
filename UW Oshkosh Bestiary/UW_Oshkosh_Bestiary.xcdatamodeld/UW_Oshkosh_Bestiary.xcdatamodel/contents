@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13A603" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13B42" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Sighting" representedClassName="Sighting" syncable="YES">
         <attribute name="additionalInformation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="affiliation" optional="YES" attributeType="String" syncable="YES"/>
@@ -20,6 +20,7 @@
         <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="observationalTechniqueOther" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photoTime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="precipitation" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="precipitationMeasure" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pressure" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -27,11 +28,12 @@
         <attribute name="species" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="technique" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="temperature" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="videoTime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="videoUrl" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="windDirection" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="windSpeed" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Sighting" positionX="-63" positionY="-18" width="128" height="480"/>
+        <element name="Sighting" positionX="-63" positionY="-18" width="128" height="510"/>
     </elements>
 </model>

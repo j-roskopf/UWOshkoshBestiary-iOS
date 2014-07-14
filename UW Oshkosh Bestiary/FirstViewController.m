@@ -14,6 +14,7 @@
 #import "AppDelegate.h"
 #import "ViewVideoViewController.h"
 #import "WeatherViewController.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 
 
@@ -86,6 +87,10 @@ CLLocationManager *locationManager;
     //Used to store audio file URL and data
     NSString *audioUrl;
     NSData *audioData;
+    
+    //Used to store the time of the selected photo / video
+    NSString *photoTime;
+    NSString *videoTime;
 
 }
 - (IBAction)capturePicture:(id)sender {
@@ -115,6 +120,16 @@ CLLocationManager *locationManager;
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:
 (NSInteger)buttonIndex {
     if (buttonIndex == 1) {
+        
+        //Sets video to null
+        _videoURL = nil;
+        
+        //Sets the image back to the gray square
+        UIColor *color = [UIColor lightGrayColor];
+        UIImage *image = [self imageWithColor:color];
+        
+        //set the image to be a gray square
+        _imageOutlet.image = image;
         
         audioData = nil;
         audioUrl = @"";
@@ -241,6 +256,28 @@ CLLocationManager *locationManager;
         self.videoURL = info[UIImagePickerControllerMediaURL];
         [picker dismissViewControllerAnimated:YES completion:NULL];
         
+        NSURL *url = info[UIImagePickerControllerReferenceURL];
+        ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+        
+        [assetsLibrary assetForURL:url resultBlock:^(ALAsset *asset) {
+            NSDate *date = [asset valueForProperty:ALAssetPropertyDate];
+
+            
+            NSLocale* currentLocale = [NSLocale currentLocale];
+            //If date = nil, that means the user took a new video, so the video time will just be a new time stamp. If it's not null, then the date is of the time the file was created
+            if(date == nil)
+            {
+                NSDate *currentDate = [NSDate date];
+                videoTime = [currentDate descriptionWithLocale:currentLocale];
+            }
+            else
+            {
+                videoTime = [date descriptionWithLocale:currentLocale];
+            }
+        } failureBlock:nil];
+        
+        
+
 
 
     }
@@ -257,6 +294,32 @@ CLLocationManager *locationManager;
         else{
             [self dismissModalViewControllerAnimated:YES];
         }
+        
+        NSURL *url = info[UIImagePickerControllerReferenceURL];
+        ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+        
+        [assetsLibrary assetForURL:url resultBlock:^(ALAsset *asset) {
+            NSDate *date = [asset valueForProperty:ALAssetPropertyDate];
+            
+            NSLocale* currentLocale = [NSLocale currentLocale];
+            
+            //If date = nil, that means the user took a new photo, so the video time will just be a new time stamp. If it's not null, then the date is of the time the file was created
+            if(date == nil)
+            {
+                NSDate *currentDate = [NSDate date];
+                photoTime = [currentDate descriptionWithLocale:currentLocale];
+            }
+            else
+            {
+                photoTime = [date descriptionWithLocale:currentLocale];
+            }
+        
+            
+        } failureBlock:nil];
+        
+
+        
+
     }
     
 
@@ -290,12 +353,29 @@ CLLocationManager *locationManager;
     //Checks if user is at least ios6
     atLeastIOS6 = [[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0;
     
+
+    
+    
+    
     if(!_existingSubmission)
     {
         UIColor *color = [UIColor lightGrayColor];
         UIImage *image = [self imageWithColor:color];
         
+        //set the image to be a gray square
         _imageOutlet.image = image;
+        
+        //If the user has entered a submission before, populate their first/last name and email from user defaults
+        NSString *firstName = [[NSUserDefaults standardUserDefaults]
+                               stringForKey:@"firstName"];
+        NSString *lastName = [[NSUserDefaults standardUserDefaults]
+                              stringForKey:@"lastName"];
+        NSString *email = [[NSUserDefaults standardUserDefaults]
+                           stringForKey:@"email"];
+        
+        _firstNameTextField.text = firstName;
+        _lastNameTextField.text = lastName;
+        _emailTextField.text = email;
         
         
         //Starts location object
@@ -317,6 +397,16 @@ CLLocationManager *locationManager;
         self.title = @"Existing Submission";
         
         audioUrl = _existingSighting.audioUrl;
+        
+        NSString *temp = [NSString stringWithFormat:@"photo time %@", _existingSighting.photoTime];
+        
+        NSLog(temp);
+        
+        NSString *temp1 = [NSString stringWithFormat:@"video time %@", _existingSighting.videoTime];
+        
+        NSLog(temp1);
+        
+        
         
 
 
@@ -705,8 +795,9 @@ CLLocationManager *locationManager;
             
             
 
-            
-            
+            //Saving time for the photo/video
+            [_existingSighting setValue:photoTime forKeyPath:@"photoTime"];
+            [_existingSighting setValue:videoTime forKeyPath:@"videoTime"];
             
             
             //Shouldn't be any need to re-save the weather or date
@@ -813,6 +904,12 @@ CLLocationManager *locationManager;
             //Saving the date
             [s setValue:[NSDate date] forKey:@"date"];
             
+            //Saving the photo time
+            [s setValue:photoTime forKey:@"photoTime"];
+            
+            //Saving the video time
+            [s setValue:videoTime forKey:@"videoTime"];
+            
 
             
             
@@ -822,6 +919,17 @@ CLLocationManager *locationManager;
 
             
         }
+        
+        // Store the first name/ last name / email
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        [defaults setObject:[_firstNameTextField text] forKey:@"firstName"];
+        [defaults setObject:[_lastNameTextField text] forKey:@"lastName"];
+        [defaults setObject:[_emailTextField text] forKey:@"email"];
+
+        [defaults synchronize];
+        
+        
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Submission saved to local storage" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil,nil];
         [alert show];
         
