@@ -397,21 +397,7 @@ CLLocationManager *locationManager;
         self.title = @"Existing Submission";
         
         audioUrl = _existingSighting.audioUrl;
-        
-        NSString *temp = [NSString stringWithFormat:@"photo time %@", _existingSighting.photoTime];
-        
-        NSLog(temp);
-        
-        NSString *temp1 = [NSString stringWithFormat:@"video time %@", _existingSighting.videoTime];
-        
-        NSLog(temp1);
-        
-        
-        
-
-
-
-        
+                
         if(audioUrl != nil)
         {
             BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:audioUrl];
