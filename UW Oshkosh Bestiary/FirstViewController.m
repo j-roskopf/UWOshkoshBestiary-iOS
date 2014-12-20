@@ -609,18 +609,28 @@ CLLocationManager *locationManager;
     else if ([segue.identifier isEqualToString:@"segueAudio"]) {
         
         AudioRecordingViewController *audioController = segue.destinationViewController;
+        NSLog(@"Here");
         audioController.delegate = self;
-        if(_existingSubmission  || recorder)
-        {
-            if(audioUrl == nil && recorder.url.path != nil)
+        if(_existingSighting != nil){
+             NSLog(@"Here.5");
+            NSLog(@"Here1");
+            if(_existingSubmission)
             {
-                audioUrl = recorder.url.path;
+                NSLog(@"Here2");
+                if(audioUrl == nil && recorder.url.path != nil)
+                {
+                    NSLog(@"Here3");
+                    audioUrl = recorder.url.path;
+                }
+                audioController.existingFile = YES;
+                [audioController initPlayerFromSavedEntry:audioUrl withData:audioData];
+                
+        
+            
+                
             }
-            audioController.existingFile = YES;
-            [audioController initPlayerFromSavedEntry:audioUrl withData:audioData];
-
-
         }
+
         
         offsetBeforeTransition = _scrollView.contentOffset;
 
@@ -1021,16 +1031,32 @@ CLLocationManager *locationManager;
     
 }
 
--(void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
-    NSString *errorType = (error.code == kCLErrorDenied) ? @"Access Denied" : @"Unknown Error";
-    
-    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Error Getting Location"
-                                                      message:errorType
-                                                     delegate:nil
-                                            cancelButtonTitle:@"OK"
-                                            otherButtonTitles:nil];
-    
-    [message show];
+- (void)locationManager: (CLLocationManager *)manager
+       didFailWithError: (NSError *)error
+{
+    [manager stopUpdatingLocation];
+    NSLog(@"error%@",error);
+    switch([error code])
+    {
+        case kCLErrorNetwork: // general, network-related error
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location Error" message:@"Please check your network connection or that you are not in airplane mode" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+            break;
+        case kCLErrorDenied:{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location Error" message:@"User has denied to use current Location " delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+            break;
+        default:
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location Error" message:@"Unknown network error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+            break;
+    }
+
 }
 
 -(NSString*)windDirectionForDegrees:(float) degrees {

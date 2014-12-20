@@ -44,8 +44,9 @@
 
     
     // Create a new dated file
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:savedUrl];
     
-    if(!_existingFile)
+    if(!_existingFile && fileExists)
     {
         NSArray *dirPaths;
         NSString *docsDir;
@@ -59,7 +60,7 @@
         savedUrl = [docsDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_recordedSound.caf",timeStamp]];
     }
     else{
-        BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:savedUrl];
+        
         
         NSLog(fileExists ? @"yes" : @"no");
         [_playButton setEnabled:YES];

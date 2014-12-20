@@ -37,6 +37,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
+                                          initWithTarget:self action:@selector(handleLongPress:)];
+    lpgr.minimumPressDuration = 2.0; //seconds
+    lpgr.delegate = self;
+    
+    [self.tableView addGestureRecognizer:lpgr];
+    
+    
+
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -137,6 +148,39 @@
     
     mutableArray = [(NSArray*)submissions mutableCopy];
 }
+
+-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+
+
+{
+    
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        
+        CGPoint p = [gestureRecognizer locationInView:self.tableView];
+        
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Detected long press"
+                                                          message:@"There has been an error. No weather data will be collected"
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        
+        [message show];
+        
+        
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
+        if (indexPath == nil) {
+            NSLog(@"long press on table view but not on a row");
+        } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+            NSLog(@"long press on table view at row %d", indexPath.row);
+        } else {
+            NSLog(@"gestureRecognizer.state = %d", gestureRecognizer.state);
+        }
+        
+    }
+
+}
+
 
 
 
