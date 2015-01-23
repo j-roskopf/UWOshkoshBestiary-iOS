@@ -127,7 +127,7 @@ CLLocationManager *locationManager;
                  NSString *rain2 = responseObject[@"rain"][@"2h"];
                  NSString *rain3 = responseObject[@"rain"][@"3h"];
                  
-                 precipitation;
+
                  if(rain1 == nil && rain2 == nil)
                  {
                      precipitation = [rain3 floatValue];

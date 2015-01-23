@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CB90517B8F984F989E4F78BC"
+               BlueprintIdentifier = "A048B275BD452BBA847DDEEA"
                BuildableName = "libPods-UW Oshkosh Bestiary-AFNetworking.a"
                BlueprintName = "Pods-UW Oshkosh Bestiary-AFNetworking"
                ReferencedContainer = "container:Pods.xcodeproj">

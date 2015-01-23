@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import <ActionSheetPicker.h>
 #import <AFNetworking/AFNetworking.h>
 #import <AFHTTPRequestOperationManager.h>
 #import "Sighting.h"

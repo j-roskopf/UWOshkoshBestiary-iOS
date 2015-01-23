@@ -1,610 +1,1560 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		84343CCA196CACF700D107C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84343CC9196CACF700D107C6 /* Main.storyboard */; };
-		84343CCD196CAD0200D107C6 /* AudioRecordingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84343CCC196CAD0200D107C6 /* AudioRecordingViewController.m */; };
-		84343CD4196CAD1200D107C6 /* CountyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84343CCF196CAD1200D107C6 /* CountyViewController.m */; };
-		84343CD5196CAD1200D107C6 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84343CD1196CAD1200D107C6 /* FirstViewController.m */; };
-		84343CD6196CAD1200D107C6 /* GroupPhylaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84343CD3196CAD1200D107C6 /* GroupPhylaViewController.m */; };
-		843A285B196F54A200852E74 /* Sighting.m in Sources */ = {isa = PBXBuildFile; fileRef = 843A285A196F54A200852E74 /* Sighting.m */; };
-		843A285D196F897200852E74 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 843A285C196F897200852E74 /* AssetsLibrary.framework */; };
-		D83F8D3E19520DF800FD4C9A /* ViewVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D83F8D3D19520DF800FD4C9A /* ViewVideoViewController.m */; };
-		D85286EB1943943500DE5424 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85286EA1943943500DE5424 /* Foundation.framework */; };
-		D85286ED1943943500DE5424 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85286EC1943943500DE5424 /* CoreGraphics.framework */; };
-		D85286EF1943943500DE5424 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85286EE1943943500DE5424 /* UIKit.framework */; };
-		D85286F11943943500DE5424 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85286F01943943500DE5424 /* CoreData.framework */; };
-		D85286F71943943500DE5424 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D85286F51943943500DE5424 /* InfoPlist.strings */; };
-		D85286F91943943500DE5424 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D85286F81943943500DE5424 /* main.m */; };
-		D85286FD1943943500DE5424 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D85286FC1943943500DE5424 /* AppDelegate.m */; };
-		D85287001943943500DE5424 /* UW_Oshkosh_Bestiary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D85286FE1943943500DE5424 /* UW_Oshkosh_Bestiary.xcdatamodeld */; };
-		D85287021943943500DE5424 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D85287011943943500DE5424 /* Images.xcassets */; };
-		D85287091943943500DE5424 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85287081943943500DE5424 /* XCTest.framework */; };
-		D852870A1943943500DE5424 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85286EA1943943500DE5424 /* Foundation.framework */; };
-		D852870B1943943500DE5424 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85286EE1943943500DE5424 /* UIKit.framework */; };
-		D852870C1943943500DE5424 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85286F01943943500DE5424 /* CoreData.framework */; };
-		D85287141943943500DE5424 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D85287121943943500DE5424 /* InfoPlist.strings */; };
-		D85287161943943500DE5424 /* UW_Oshkosh_BestiaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D85287151943943500DE5424 /* UW_Oshkosh_BestiaryTests.m */; };
-		D85287351943968E00DE5424 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85287341943968E00DE5424 /* AVFoundation.framework */; };
-		D85287931947626A00DE5424 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85287921947626A00DE5424 /* CoreLocation.framework */; };
-		D88CB59F194E7C8D008B478C /* ExistingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D88CB59E194E7C8D008B478C /* ExistingTableViewController.m */; };
-		D8F81CD0194CE4B40073D7DD /* WeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F81CCF194CE4B40073D7DD /* WeatherViewController.m */; };
-		E8C0E2105B8B4D8EBEA41865 /* libPods-UW Oshkosh Bestiary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26EC763F841E431EAFECBE8F /* libPods-UW Oshkosh Bestiary.a */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D852870D1943943500DE5424 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D85286DF1943943500DE5424 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D85286E61943943500DE5424;
-			remoteInfo = "UW Oshkosh Bestiary";
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		0402317238DD474A831087BF /* Pods-UW Oshkosh Bestiary.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UW Oshkosh Bestiary.xcconfig"; path = "Pods/Pods-UW Oshkosh Bestiary.xcconfig"; sourceTree = "<group>"; };
-		26EC763F841E431EAFECBE8F /* libPods-UW Oshkosh Bestiary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UW Oshkosh Bestiary.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		84343CC9196CACF700D107C6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		84343CCB196CAD0200D107C6 /* AudioRecordingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecordingViewController.h; sourceTree = "<group>"; };
-		84343CCC196CAD0200D107C6 /* AudioRecordingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecordingViewController.m; sourceTree = "<group>"; };
-		84343CCE196CAD1200D107C6 /* CountyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountyViewController.h; sourceTree = "<group>"; };
-		84343CCF196CAD1200D107C6 /* CountyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountyViewController.m; sourceTree = "<group>"; };
-		84343CD0196CAD1200D107C6 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		84343CD1196CAD1200D107C6 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		84343CD2196CAD1200D107C6 /* GroupPhylaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupPhylaViewController.h; sourceTree = "<group>"; };
-		84343CD3196CAD1200D107C6 /* GroupPhylaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupPhylaViewController.m; sourceTree = "<group>"; };
-		843A2859196F54A200852E74 /* Sighting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sighting.h; sourceTree = "<group>"; };
-		843A285A196F54A200852E74 /* Sighting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sighting.m; sourceTree = "<group>"; };
-		843A285C196F897200852E74 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
-		84833BEE196CB18C00B11E9E /* libPods-UW Oshkosh Bestiary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-UW Oshkosh Bestiary.a"; path = "Pods/build/Debug-iphoneos/libPods-UW Oshkosh Bestiary.a"; sourceTree = "<group>"; };
-		84833BF0196CB1A200B11E9E /* libPods-UW Oshkosh Bestiary-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-UW Oshkosh Bestiary-AFNetworking.a"; path = "Pods/build/Debug-iphoneos/libPods-UW Oshkosh Bestiary-AFNetworking.a"; sourceTree = "<group>"; };
-		8496EFEC196CB7FD0074762A /* libPods-UW Oshkosh Bestiary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-UW Oshkosh Bestiary.a"; path = "Pods/build/Debug-iphoneos/libPods-UW Oshkosh Bestiary.a"; sourceTree = "<group>"; };
-		D83F8D3C19520DF800FD4C9A /* ViewVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewVideoViewController.h; sourceTree = "<group>"; };
-		D83F8D3D19520DF800FD4C9A /* ViewVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewVideoViewController.m; sourceTree = "<group>"; };
-		D85286E71943943500DE5424 /* UW Oshkosh Bestiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UW Oshkosh Bestiary.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D85286EA1943943500DE5424 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		D85286EC1943943500DE5424 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		D85286EE1943943500DE5424 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		D85286F01943943500DE5424 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		D85286F41943943500DE5424 /* UW Oshkosh Bestiary-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UW Oshkosh Bestiary-Info.plist"; sourceTree = "<group>"; };
-		D85286F61943943500DE5424 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D85286F81943943500DE5424 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D85286FA1943943500DE5424 /* UW Oshkosh Bestiary-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UW Oshkosh Bestiary-Prefix.pch"; sourceTree = "<group>"; };
-		D85286FB1943943500DE5424 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		D85286FC1943943500DE5424 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D85286FF1943943500DE5424 /* UW_Oshkosh_Bestiary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UW_Oshkosh_Bestiary.xcdatamodel; sourceTree = "<group>"; };
-		D85287011943943500DE5424 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D85287071943943500DE5424 /* UW Oshkosh BestiaryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UW Oshkosh BestiaryTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D85287081943943500DE5424 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		D85287111943943500DE5424 /* UW Oshkosh BestiaryTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UW Oshkosh BestiaryTests-Info.plist"; sourceTree = "<group>"; };
-		D85287131943943500DE5424 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D85287151943943500DE5424 /* UW_Oshkosh_BestiaryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UW_Oshkosh_BestiaryTests.m; sourceTree = "<group>"; };
-		D85287341943968E00DE5424 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		D85287921947626A00DE5424 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		D88CB59D194E7C8D008B478C /* ExistingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExistingTableViewController.h; sourceTree = "<group>"; };
-		D88CB59E194E7C8D008B478C /* ExistingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExistingTableViewController.m; sourceTree = "<group>"; };
-		D8F81CCE194CE4B40073D7DD /* WeatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherViewController.h; sourceTree = "<group>"; };
-		D8F81CCF194CE4B40073D7DD /* WeatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherViewController.m; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		D85286E41943943500DE5424 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				843A285D196F897200852E74 /* AssetsLibrary.framework in Frameworks */,
-				D85287931947626A00DE5424 /* CoreLocation.framework in Frameworks */,
-				D85287351943968E00DE5424 /* AVFoundation.framework in Frameworks */,
-				D85286ED1943943500DE5424 /* CoreGraphics.framework in Frameworks */,
-				D85286F11943943500DE5424 /* CoreData.framework in Frameworks */,
-				D85286EF1943943500DE5424 /* UIKit.framework in Frameworks */,
-				D85286EB1943943500DE5424 /* Foundation.framework in Frameworks */,
-				E8C0E2105B8B4D8EBEA41865 /* libPods-UW Oshkosh Bestiary.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D85287041943943500DE5424 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D85287091943943500DE5424 /* XCTest.framework in Frameworks */,
-				D852870C1943943500DE5424 /* CoreData.framework in Frameworks */,
-				D852870B1943943500DE5424 /* UIKit.framework in Frameworks */,
-				D852870A1943943500DE5424 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		D85286DE1943943500DE5424 = {
-			isa = PBXGroup;
-			children = (
-				D85286F21943943500DE5424 /* UW Oshkosh Bestiary */,
-				D852870F1943943500DE5424 /* UW Oshkosh BestiaryTests */,
-				D85286E91943943500DE5424 /* Frameworks */,
-				D85286E81943943500DE5424 /* Products */,
-				0402317238DD474A831087BF /* Pods-UW Oshkosh Bestiary.xcconfig */,
-			);
-			sourceTree = "<group>";
-		};
-		D85286E81943943500DE5424 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D85286E71943943500DE5424 /* UW Oshkosh Bestiary.app */,
-				D85287071943943500DE5424 /* UW Oshkosh BestiaryTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		D85286E91943943500DE5424 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				843A285C196F897200852E74 /* AssetsLibrary.framework */,
-				8496EFEC196CB7FD0074762A /* libPods-UW Oshkosh Bestiary.a */,
-				84833BF0196CB1A200B11E9E /* libPods-UW Oshkosh Bestiary-AFNetworking.a */,
-				84833BEE196CB18C00B11E9E /* libPods-UW Oshkosh Bestiary.a */,
-				D85287921947626A00DE5424 /* CoreLocation.framework */,
-				D85287341943968E00DE5424 /* AVFoundation.framework */,
-				D85286EA1943943500DE5424 /* Foundation.framework */,
-				D85286EC1943943500DE5424 /* CoreGraphics.framework */,
-				D85286EE1943943500DE5424 /* UIKit.framework */,
-				D85286F01943943500DE5424 /* CoreData.framework */,
-				D85287081943943500DE5424 /* XCTest.framework */,
-				26EC763F841E431EAFECBE8F /* libPods-UW Oshkosh Bestiary.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D85286F21943943500DE5424 /* UW Oshkosh Bestiary */ = {
-			isa = PBXGroup;
-			children = (
-				84343CCE196CAD1200D107C6 /* CountyViewController.h */,
-				84343CCF196CAD1200D107C6 /* CountyViewController.m */,
-				84343CD0196CAD1200D107C6 /* FirstViewController.h */,
-				84343CD1196CAD1200D107C6 /* FirstViewController.m */,
-				84343CD2196CAD1200D107C6 /* GroupPhylaViewController.h */,
-				84343CD3196CAD1200D107C6 /* GroupPhylaViewController.m */,
-				84343CCB196CAD0200D107C6 /* AudioRecordingViewController.h */,
-				84343CCC196CAD0200D107C6 /* AudioRecordingViewController.m */,
-				84343CC9196CACF700D107C6 /* Main.storyboard */,
-				D83F8D3C19520DF800FD4C9A /* ViewVideoViewController.h */,
-				D83F8D3D19520DF800FD4C9A /* ViewVideoViewController.m */,
-				D8F81CCE194CE4B40073D7DD /* WeatherViewController.h */,
-				D8F81CCF194CE4B40073D7DD /* WeatherViewController.m */,
-				D88CB59D194E7C8D008B478C /* ExistingTableViewController.h */,
-				D88CB59E194E7C8D008B478C /* ExistingTableViewController.m */,
-				D85286FB1943943500DE5424 /* AppDelegate.h */,
-				D85286FC1943943500DE5424 /* AppDelegate.m */,
-				D85287011943943500DE5424 /* Images.xcassets */,
-				D85286FE1943943500DE5424 /* UW_Oshkosh_Bestiary.xcdatamodeld */,
-				843A2859196F54A200852E74 /* Sighting.h */,
-				843A285A196F54A200852E74 /* Sighting.m */,
-				D85286F31943943500DE5424 /* Supporting Files */,
-			);
-			path = "UW Oshkosh Bestiary";
-			sourceTree = "<group>";
-		};
-		D85286F31943943500DE5424 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D85286F41943943500DE5424 /* UW Oshkosh Bestiary-Info.plist */,
-				D85286F51943943500DE5424 /* InfoPlist.strings */,
-				D85286F81943943500DE5424 /* main.m */,
-				D85286FA1943943500DE5424 /* UW Oshkosh Bestiary-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D852870F1943943500DE5424 /* UW Oshkosh BestiaryTests */ = {
-			isa = PBXGroup;
-			children = (
-				D85287151943943500DE5424 /* UW_Oshkosh_BestiaryTests.m */,
-				D85287101943943500DE5424 /* Supporting Files */,
-			);
-			path = "UW Oshkosh BestiaryTests";
-			sourceTree = "<group>";
-		};
-		D85287101943943500DE5424 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D85287111943943500DE5424 /* UW Oshkosh BestiaryTests-Info.plist */,
-				D85287121943943500DE5424 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		D85286E61943943500DE5424 /* UW Oshkosh Bestiary */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D85287191943943500DE5424 /* Build configuration list for PBXNativeTarget "UW Oshkosh Bestiary" */;
-			buildPhases = (
-				15F2598F3056403EAE1D42BC /* Check Pods Manifest.lock */,
-				D85286E31943943500DE5424 /* Sources */,
-				D85286E41943943500DE5424 /* Frameworks */,
-				D85286E51943943500DE5424 /* Resources */,
-				B3314DC880974AC194AAA8EC /* Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "UW Oshkosh Bestiary";
-			productName = "UW Oshkosh Bestiary";
-			productReference = D85286E71943943500DE5424 /* UW Oshkosh Bestiary.app */;
-			productType = "com.apple.product-type.application";
-		};
-		D85287061943943500DE5424 /* UW Oshkosh BestiaryTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D852871C1943943500DE5424 /* Build configuration list for PBXNativeTarget "UW Oshkosh BestiaryTests" */;
-			buildPhases = (
-				D85287031943943500DE5424 /* Sources */,
-				D85287041943943500DE5424 /* Frameworks */,
-				D85287051943943500DE5424 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D852870E1943943500DE5424 /* PBXTargetDependency */,
-			);
-			name = "UW Oshkosh BestiaryTests";
-			productName = "UW Oshkosh BestiaryTests";
-			productReference = D85287071943943500DE5424 /* UW Oshkosh BestiaryTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		D85286DF1943943500DE5424 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastUpgradeCheck = 0510;
-				ORGANIZATIONNAME = "UW Oshkosh";
-				TargetAttributes = {
-					D85286E61943943500DE5424 = {
-						DevelopmentTeam = 24R79PWUP6;
-					};
-					D85287061943943500DE5424 = {
-						TestTargetID = D85286E61943943500DE5424;
-					};
-				};
-			};
-			buildConfigurationList = D85286E21943943500DE5424 /* Build configuration list for PBXProject "UW Oshkosh Bestiary" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				Base,
-			);
-			mainGroup = D85286DE1943943500DE5424;
-			productRefGroup = D85286E81943943500DE5424 /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				D85286E61943943500DE5424 /* UW Oshkosh Bestiary */,
-				D85287061943943500DE5424 /* UW Oshkosh BestiaryTests */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		D85286E51943943500DE5424 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				84343CCA196CACF700D107C6 /* Main.storyboard in Resources */,
-				D85286F71943943500DE5424 /* InfoPlist.strings in Resources */,
-				D85287021943943500DE5424 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D85287051943943500DE5424 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D85287141943943500DE5424 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		15F2598F3056403EAE1D42BC /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		B3314DC880974AC194AAA8EC /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-UW Oshkosh Bestiary-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		D85286E31943943500DE5424 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D85286FD1943943500DE5424 /* AppDelegate.m in Sources */,
-				D88CB59F194E7C8D008B478C /* ExistingTableViewController.m in Sources */,
-				D8F81CD0194CE4B40073D7DD /* WeatherViewController.m in Sources */,
-				D85287001943943500DE5424 /* UW_Oshkosh_Bestiary.xcdatamodeld in Sources */,
-				D83F8D3E19520DF800FD4C9A /* ViewVideoViewController.m in Sources */,
-				84343CCD196CAD0200D107C6 /* AudioRecordingViewController.m in Sources */,
-				843A285B196F54A200852E74 /* Sighting.m in Sources */,
-				84343CD5196CAD1200D107C6 /* FirstViewController.m in Sources */,
-				84343CD6196CAD1200D107C6 /* GroupPhylaViewController.m in Sources */,
-				84343CD4196CAD1200D107C6 /* CountyViewController.m in Sources */,
-				D85286F91943943500DE5424 /* main.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D85287031943943500DE5424 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D85287161943943500DE5424 /* UW_Oshkosh_BestiaryTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D852870E1943943500DE5424 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D85286E61943943500DE5424 /* UW Oshkosh Bestiary */;
-			targetProxy = D852870D1943943500DE5424 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		D85286F51943943500DE5424 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D85286F61943943500DE5424 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		D85287121943943500DE5424 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D85287131943943500DE5424 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
-/* Begin XCBuildConfiguration section */
-		D85287171943943500DE5424 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-			};
-			name = Debug;
-		};
-		D85287181943943500DE5424 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		D852871A1943943500DE5424 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0402317238DD474A831087BF /* Pods-UW Oshkosh Bestiary.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "UW Oshkosh Bestiary/UW Oshkosh Bestiary-Prefix.pch";
-				INFOPLIST_FILE = "UW Oshkosh Bestiary/UW Oshkosh Bestiary-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		D852871B1943943500DE5424 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0402317238DD474A831087BF /* Pods-UW Oshkosh Bestiary.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "UW Oshkosh Bestiary/UW Oshkosh Bestiary-Prefix.pch";
-				INFOPLIST_FILE = "UW Oshkosh Bestiary/UW Oshkosh Bestiary-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		D852871D1943943500DE5424 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/UW Oshkosh Bestiary.app/UW Oshkosh Bestiary";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "UW Oshkosh Bestiary/UW Oshkosh Bestiary-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "UW Oshkosh BestiaryTests/UW Oshkosh BestiaryTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		D852871E1943943500DE5424 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/UW Oshkosh Bestiary.app/UW Oshkosh Bestiary";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "UW Oshkosh Bestiary/UW Oshkosh Bestiary-Prefix.pch";
-				INFOPLIST_FILE = "UW Oshkosh BestiaryTests/UW Oshkosh BestiaryTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		D85286E21943943500DE5424 /* Build configuration list for PBXProject "UW Oshkosh Bestiary" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D85287171943943500DE5424 /* Debug */,
-				D85287181943943500DE5424 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D85287191943943500DE5424 /* Build configuration list for PBXNativeTarget "UW Oshkosh Bestiary" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D852871A1943943500DE5424 /* Debug */,
-				D852871B1943943500DE5424 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D852871C1943943500DE5424 /* Build configuration list for PBXNativeTarget "UW Oshkosh BestiaryTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D852871D1943943500DE5424 /* Debug */,
-				D852871E1943943500DE5424 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		D85286FE1943943500DE5424 /* UW_Oshkosh_Bestiary.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				D85286FF1943943500DE5424 /* UW_Oshkosh_Bestiary.xcdatamodel */,
-			);
-			currentVersion = D85286FF1943943500DE5424 /* UW_Oshkosh_Bestiary.xcdatamodel */;
-			path = UW_Oshkosh_Bestiary.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
-	};
-	rootObject = D85286DF1943943500DE5424 /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>15F2598F3056403EAE1D42BC</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [[ $? != 0 ]] ; then
+    cat &lt;&lt; EOM
+error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
+EOM
+    exit 1
+fi
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>20956CF2D1551EDEA24B216A</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BB0DD891F448B3A4C5ABE535</string>
+				<string>F5EF5C6D3C4D2FE676B85599</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>26EC763F841E431EAFECBE8F</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>libPods-UW Oshkosh Bestiary.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>84343CC9196CACF700D107C6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>path</key>
+			<string>Main.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>84343CCA196CACF700D107C6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>84343CC9196CACF700D107C6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>84343CCB196CAD0200D107C6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AudioRecordingViewController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>84343CCC196CAD0200D107C6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AudioRecordingViewController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>84343CCD196CAD0200D107C6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>84343CCC196CAD0200D107C6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>84343CCE196CAD1200D107C6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>CountyViewController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>84343CCF196CAD1200D107C6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>CountyViewController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>84343CD0196CAD1200D107C6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>FirstViewController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>84343CD1196CAD1200D107C6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>FirstViewController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>84343CD2196CAD1200D107C6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>GroupPhylaViewController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>84343CD3196CAD1200D107C6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>GroupPhylaViewController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>84343CD4196CAD1200D107C6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>84343CCF196CAD1200D107C6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>84343CD5196CAD1200D107C6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>84343CD1196CAD1200D107C6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>84343CD6196CAD1200D107C6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>84343CD3196CAD1200D107C6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>843A2859196F54A200852E74</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>Sighting.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>843A285A196F54A200852E74</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>Sighting.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>843A285B196F54A200852E74</key>
+		<dict>
+			<key>fileRef</key>
+			<string>843A285A196F54A200852E74</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>843A285C196F897200852E74</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>AssetsLibrary.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/AssetsLibrary.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>843A285D196F897200852E74</key>
+		<dict>
+			<key>fileRef</key>
+			<string>843A285C196F897200852E74</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>84833BEE196CB18C00B11E9E</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>archive.ar</string>
+			<key>name</key>
+			<string>libPods-UW Oshkosh Bestiary.a</string>
+			<key>path</key>
+			<string>Pods/build/Debug-iphoneos/libPods-UW Oshkosh Bestiary.a</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>84833BF0196CB1A200B11E9E</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>archive.ar</string>
+			<key>name</key>
+			<string>libPods-UW Oshkosh Bestiary-AFNetworking.a</string>
+			<key>path</key>
+			<string>Pods/build/Debug-iphoneos/libPods-UW Oshkosh Bestiary-AFNetworking.a</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8496EFEC196CB7FD0074762A</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>archive.ar</string>
+			<key>name</key>
+			<string>libPods-UW Oshkosh Bestiary.a</string>
+			<key>path</key>
+			<string>Pods/build/Debug-iphoneos/libPods-UW Oshkosh Bestiary.a</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B3314DC880974AC194AAA8EC</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-UW Oshkosh Bestiary/Pods-UW Oshkosh Bestiary-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>BB0DD891F448B3A4C5ABE535</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-UW Oshkosh Bestiary.debug.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-UW Oshkosh Bestiary/Pods-UW Oshkosh Bestiary.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D83F8D3C19520DF800FD4C9A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>ViewVideoViewController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D83F8D3D19520DF800FD4C9A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>ViewVideoViewController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D83F8D3E19520DF800FD4C9A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D83F8D3D19520DF800FD4C9A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D85286DE1943943500DE5424</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D85286F21943943500DE5424</string>
+				<string>D852870F1943943500DE5424</string>
+				<string>D85286E91943943500DE5424</string>
+				<string>D85286E81943943500DE5424</string>
+				<string>20956CF2D1551EDEA24B216A</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D85286DF1943943500DE5424</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastUpgradeCheck</key>
+				<string>0510</string>
+				<key>ORGANIZATIONNAME</key>
+				<string>UW Oshkosh</string>
+				<key>TargetAttributes</key>
+				<dict>
+					<key>D85286E61943943500DE5424</key>
+					<dict>
+						<key>DevelopmentTeam</key>
+						<string>24R79PWUP6</string>
+					</dict>
+					<key>D85287061943943500DE5424</key>
+					<dict>
+						<key>TestTargetID</key>
+						<string>D85286E61943943500DE5424</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>D85286E21943943500DE5424</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+				<string>Base</string>
+			</array>
+			<key>mainGroup</key>
+			<string>D85286DE1943943500DE5424</string>
+			<key>productRefGroup</key>
+			<string>D85286E81943943500DE5424</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>D85286E61943943500DE5424</string>
+				<string>D85287061943943500DE5424</string>
+			</array>
+		</dict>
+		<key>D85286E21943943500DE5424</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>D85287171943943500DE5424</string>
+				<string>D85287181943943500DE5424</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>D85286E31943943500DE5424</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D85286FD1943943500DE5424</string>
+				<string>D88CB59F194E7C8D008B478C</string>
+				<string>D8F81CD0194CE4B40073D7DD</string>
+				<string>D85287001943943500DE5424</string>
+				<string>D83F8D3E19520DF800FD4C9A</string>
+				<string>84343CCD196CAD0200D107C6</string>
+				<string>843A285B196F54A200852E74</string>
+				<string>84343CD5196CAD1200D107C6</string>
+				<string>84343CD6196CAD1200D107C6</string>
+				<string>84343CD4196CAD1200D107C6</string>
+				<string>D85286F91943943500DE5424</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D85286E41943943500DE5424</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>843A285D196F897200852E74</string>
+				<string>D85287931947626A00DE5424</string>
+				<string>D85287351943968E00DE5424</string>
+				<string>D85286ED1943943500DE5424</string>
+				<string>D85286F11943943500DE5424</string>
+				<string>D85286EF1943943500DE5424</string>
+				<string>D85286EB1943943500DE5424</string>
+				<string>E8C0E2105B8B4D8EBEA41865</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D85286E51943943500DE5424</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>84343CCA196CACF700D107C6</string>
+				<string>D85286F71943943500DE5424</string>
+				<string>D85287021943943500DE5424</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D85286E61943943500DE5424</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>D85287191943943500DE5424</string>
+			<key>buildPhases</key>
+			<array>
+				<string>15F2598F3056403EAE1D42BC</string>
+				<string>D85286E31943943500DE5424</string>
+				<string>D85286E41943943500DE5424</string>
+				<string>D85286E51943943500DE5424</string>
+				<string>B3314DC880974AC194AAA8EC</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>UW Oshkosh Bestiary</string>
+			<key>productName</key>
+			<string>UW Oshkosh Bestiary</string>
+			<key>productReference</key>
+			<string>D85286E71943943500DE5424</string>
+			<key>productType</key>
+			<string>com.apple.product-type.application</string>
+		</dict>
+		<key>D85286E71943943500DE5424</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.application</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>UW Oshkosh Bestiary.app</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>D85286E81943943500DE5424</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D85286E71943943500DE5424</string>
+				<string>D85287071943943500DE5424</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D85286E91943943500DE5424</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>843A285C196F897200852E74</string>
+				<string>8496EFEC196CB7FD0074762A</string>
+				<string>84833BF0196CB1A200B11E9E</string>
+				<string>84833BEE196CB18C00B11E9E</string>
+				<string>D85287921947626A00DE5424</string>
+				<string>D85287341943968E00DE5424</string>
+				<string>D85286EA1943943500DE5424</string>
+				<string>D85286EC1943943500DE5424</string>
+				<string>D85286EE1943943500DE5424</string>
+				<string>D85286F01943943500DE5424</string>
+				<string>D85287081943943500DE5424</string>
+				<string>26EC763F841E431EAFECBE8F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D85286EA1943943500DE5424</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Foundation.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/Foundation.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>D85286EB1943943500DE5424</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D85286EA1943943500DE5424</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D85286EC1943943500DE5424</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>CoreGraphics.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/CoreGraphics.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>D85286ED1943943500DE5424</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D85286EC1943943500DE5424</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D85286EE1943943500DE5424</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>UIKit.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/UIKit.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>D85286EF1943943500DE5424</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D85286EE1943943500DE5424</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D85286F01943943500DE5424</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>CoreData.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/CoreData.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>D85286F11943943500DE5424</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D85286F01943943500DE5424</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D85286F21943943500DE5424</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>84343CCE196CAD1200D107C6</string>
+				<string>84343CCF196CAD1200D107C6</string>
+				<string>84343CD0196CAD1200D107C6</string>
+				<string>84343CD1196CAD1200D107C6</string>
+				<string>84343CD2196CAD1200D107C6</string>
+				<string>84343CD3196CAD1200D107C6</string>
+				<string>84343CCB196CAD0200D107C6</string>
+				<string>84343CCC196CAD0200D107C6</string>
+				<string>84343CC9196CACF700D107C6</string>
+				<string>D83F8D3C19520DF800FD4C9A</string>
+				<string>D83F8D3D19520DF800FD4C9A</string>
+				<string>D8F81CCE194CE4B40073D7DD</string>
+				<string>D8F81CCF194CE4B40073D7DD</string>
+				<string>D88CB59D194E7C8D008B478C</string>
+				<string>D88CB59E194E7C8D008B478C</string>
+				<string>D85286FB1943943500DE5424</string>
+				<string>D85286FC1943943500DE5424</string>
+				<string>D85287011943943500DE5424</string>
+				<string>D85286FE1943943500DE5424</string>
+				<string>843A2859196F54A200852E74</string>
+				<string>843A285A196F54A200852E74</string>
+				<string>D85286F31943943500DE5424</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>UW Oshkosh Bestiary</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D85286F31943943500DE5424</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D85286F41943943500DE5424</string>
+				<string>D85286F51943943500DE5424</string>
+				<string>D85286F81943943500DE5424</string>
+				<string>D85286FA1943943500DE5424</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D85286F41943943500DE5424</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>UW Oshkosh Bestiary-Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D85286F51943943500DE5424</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D85286F61943943500DE5424</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D85286F61943943500DE5424</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.strings</string>
+			<key>name</key>
+			<string>en</string>
+			<key>path</key>
+			<string>en.lproj/InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D85286F71943943500DE5424</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D85286F51943943500DE5424</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D85286F81943943500DE5424</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>main.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D85286F91943943500DE5424</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D85286F81943943500DE5424</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D85286FA1943943500DE5424</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>UW Oshkosh Bestiary-Prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D85286FB1943943500DE5424</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppDelegate.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D85286FC1943943500DE5424</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppDelegate.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D85286FD1943943500DE5424</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D85286FC1943943500DE5424</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D85286FE1943943500DE5424</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D85286FF1943943500DE5424</string>
+			</array>
+			<key>currentVersion</key>
+			<string>D85286FF1943943500DE5424</string>
+			<key>isa</key>
+			<string>XCVersionGroup</string>
+			<key>path</key>
+			<string>UW_Oshkosh_Bestiary.xcdatamodeld</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+			<key>versionGroupType</key>
+			<string>wrapper.xcdatamodel</string>
+		</dict>
+		<key>D85286FF1943943500DE5424</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.xcdatamodel</string>
+			<key>path</key>
+			<string>UW_Oshkosh_Bestiary.xcdatamodel</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D85287001943943500DE5424</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D85286FE1943943500DE5424</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D85287011943943500DE5424</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>folder.assetcatalog</string>
+			<key>path</key>
+			<string>Images.xcassets</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D85287021943943500DE5424</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D85287011943943500DE5424</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D85287031943943500DE5424</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D85287161943943500DE5424</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D85287041943943500DE5424</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D85287091943943500DE5424</string>
+				<string>D852870C1943943500DE5424</string>
+				<string>D852870B1943943500DE5424</string>
+				<string>D852870A1943943500DE5424</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D85287051943943500DE5424</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D85287141943943500DE5424</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D85287061943943500DE5424</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>D852871C1943943500DE5424</string>
+			<key>buildPhases</key>
+			<array>
+				<string>D85287031943943500DE5424</string>
+				<string>D85287041943943500DE5424</string>
+				<string>D85287051943943500DE5424</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>D852870E1943943500DE5424</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>UW Oshkosh BestiaryTests</string>
+			<key>productName</key>
+			<string>UW Oshkosh BestiaryTests</string>
+			<key>productReference</key>
+			<string>D85287071943943500DE5424</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle.unit-test</string>
+		</dict>
+		<key>D85287071943943500DE5424</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>UW Oshkosh BestiaryTests.xctest</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>D85287081943943500DE5424</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>XCTest.framework</string>
+			<key>path</key>
+			<string>Library/Frameworks/XCTest.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
+		</dict>
+		<key>D85287091943943500DE5424</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D85287081943943500DE5424</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D852870A1943943500DE5424</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D85286EA1943943500DE5424</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D852870B1943943500DE5424</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D85286EE1943943500DE5424</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D852870C1943943500DE5424</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D85286F01943943500DE5424</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D852870D1943943500DE5424</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D85286DF1943943500DE5424</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>D85286E61943943500DE5424</string>
+			<key>remoteInfo</key>
+			<string>UW Oshkosh Bestiary</string>
+		</dict>
+		<key>D852870E1943943500DE5424</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>D85286E61943943500DE5424</string>
+			<key>targetProxy</key>
+			<string>D852870D1943943500DE5424</string>
+		</dict>
+		<key>D852870F1943943500DE5424</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D85287151943943500DE5424</string>
+				<string>D85287101943943500DE5424</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>UW Oshkosh BestiaryTests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D85287101943943500DE5424</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D85287111943943500DE5424</string>
+				<string>D85287121943943500DE5424</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D85287111943943500DE5424</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>UW Oshkosh BestiaryTests-Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D85287121943943500DE5424</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D85287131943943500DE5424</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D85287131943943500DE5424</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.strings</string>
+			<key>name</key>
+			<string>en</string>
+			<key>path</key>
+			<string>en.lproj/InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D85287141943943500DE5424</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D85287121943943500DE5424</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D85287151943943500DE5424</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>UW_Oshkosh_BestiaryTests.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D85287161943943500DE5424</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D85287151943943500DE5424</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D85287171943943500DE5424</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+				<string>NO</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.1</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>D85287181943943500DE5424</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>YES</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.1</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>D85287191943943500DE5424</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>D852871A1943943500DE5424</string>
+				<string>D852871B1943943500DE5424</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>D852871A1943943500DE5424</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>BB0DD891F448B3A4C5ABE535</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME</key>
+				<string>LaunchImage</string>
+				<key>CODE_SIGN_IDENTITY</key>
+				<string>iPhone Developer</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>UW Oshkosh Bestiary/UW Oshkosh Bestiary-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>UW Oshkosh Bestiary/UW Oshkosh Bestiary-Info.plist</string>
+				<key>LIBRARY_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>$(PROJECT_DIR)/Pods/build/Debug-iphoneos</string>
+				</array>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PROVISIONING_PROFILE</key>
+				<string></string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>app</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>D852871B1943943500DE5424</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>F5EF5C6D3C4D2FE676B85599</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME</key>
+				<string>LaunchImage</string>
+				<key>CODE_SIGN_IDENTITY</key>
+				<string>iPhone Developer</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>UW Oshkosh Bestiary/UW Oshkosh Bestiary-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>UW Oshkosh Bestiary/UW Oshkosh Bestiary-Info.plist</string>
+				<key>LIBRARY_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>$(PROJECT_DIR)/Pods/build/Debug-iphoneos</string>
+				</array>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PROVISIONING_PROFILE</key>
+				<string></string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>app</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>D852871C1943943500DE5424</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>D852871D1943943500DE5424</string>
+				<string>D852871E1943943500DE5424</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>D852871D1943943500DE5424</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(BUILT_PRODUCTS_DIR)/UW Oshkosh Bestiary.app/UW Oshkosh Bestiary</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
+					<string>$(inherited)</string>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>UW Oshkosh Bestiary/UW Oshkosh Bestiary-Prefix.pch</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>INFOPLIST_FILE</key>
+				<string>UW Oshkosh BestiaryTests/UW Oshkosh BestiaryTests-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUNDLE_LOADER)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>xctest</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>D852871E1943943500DE5424</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(BUILT_PRODUCTS_DIR)/UW Oshkosh Bestiary.app/UW Oshkosh Bestiary</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
+					<string>$(inherited)</string>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>UW Oshkosh Bestiary/UW Oshkosh Bestiary-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>UW Oshkosh BestiaryTests/UW Oshkosh BestiaryTests-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUNDLE_LOADER)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>xctest</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>D85287341943968E00DE5424</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>AVFoundation.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/AVFoundation.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>D85287351943968E00DE5424</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D85287341943968E00DE5424</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D85287921947626A00DE5424</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>CoreLocation.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/CoreLocation.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>D85287931947626A00DE5424</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D85287921947626A00DE5424</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D88CB59D194E7C8D008B478C</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>ExistingTableViewController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D88CB59E194E7C8D008B478C</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>ExistingTableViewController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D88CB59F194E7C8D008B478C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D88CB59E194E7C8D008B478C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D8F81CCE194CE4B40073D7DD</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>WeatherViewController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D8F81CCF194CE4B40073D7DD</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>WeatherViewController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D8F81CD0194CE4B40073D7DD</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D8F81CCF194CE4B40073D7DD</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E8C0E2105B8B4D8EBEA41865</key>
+		<dict>
+			<key>fileRef</key>
+			<string>26EC763F841E431EAFECBE8F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F5EF5C6D3C4D2FE676B85599</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-UW Oshkosh Bestiary.release.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-UW Oshkosh Bestiary/Pods-UW Oshkosh Bestiary.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>D85286DF1943943500DE5424</string>
+</dict>
+</plist>

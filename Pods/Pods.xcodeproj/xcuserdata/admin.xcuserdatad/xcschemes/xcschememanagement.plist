@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-UW Oshkosh Bestiary-ActionSheetPicker-3.0.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-UW Oshkosh Bestiary.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>CB90517B8F984F989E4F78BC</key>
+		<key>A048B275BD452BBA847DDEEA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D1605C11B7FE44E9B3FB4BA7</key>
+		<key>BE8FA938FAEC94A27B6D3B2E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F5D122237A79D1C174A6D2E6</key>
 		<dict>
 			<key>primary</key>
 			<true/>

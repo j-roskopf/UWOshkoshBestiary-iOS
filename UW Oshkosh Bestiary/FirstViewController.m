@@ -60,6 +60,10 @@ CLLocationManager *locationManager;
     CGPoint offsetBeforeTransition;
     UIGestureRecognizer *tapper;
     
+    NSString* URL_FOR_SUBMISSION;
+    
+    NSURL* photoURL;
+    
     //Stores the active text field
     UITextField* activeField;
     
@@ -98,7 +102,9 @@ CLLocationManager *locationManager;
     
 
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"Choose picture source" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo/Video",@"Choose From Library", nil];
+    //UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"Choose picture source" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo/Video",@"Choose From Library", nil];
+    
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"Choose picture source" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", nil];
     [actionSheet showInView:self.view];
     
 
@@ -116,7 +122,7 @@ CLLocationManager *locationManager;
 }
 
 
-// yes button callback
+// yes button callback for clearing submission
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:
 (NSInteger)buttonIndex {
     if (buttonIndex == 1) {
@@ -174,6 +180,7 @@ CLLocationManager *locationManager;
     }
 }
 
+//Method for handling 'add photo button'
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         
@@ -209,32 +216,32 @@ CLLocationManager *locationManager;
         
     } else if (buttonIndex == 1) {
         
-        if ([UIImagePickerController isSourceTypeAvailable:
-             UIImagePickerControllerSourceTypePhotoLibrary])
-        {
-            UIImagePickerController *imagePicker =
-            [[UIImagePickerController alloc] init];
-            
-            imagePicker.delegate = self;
-            
-            imagePicker.sourceType =
-            UIImagePickerControllerSourceTypePhotoLibrary;
-            
-            imagePicker.mediaTypes =
-            @[(NSString *) kUTTypeImage,
-              (NSString *) kUTTypeMovie];
-            
-            imagePicker.allowsEditing = YES;
-            [self presentViewController:imagePicker
-                               animated:YES completion:nil];
-            
-        }
-        else{
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Can't access photo library" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil,nil];
-            [alert show];
-            
-        }
+//        if ([UIImagePickerController isSourceTypeAvailable:
+//             UIImagePickerControllerSourceTypePhotoLibrary])
+//        {
+//            UIImagePickerController *imagePicker =
+//            [[UIImagePickerController alloc] init];
+//            
+//            imagePicker.delegate = self;
+//            
+//            imagePicker.sourceType =
+//            UIImagePickerControllerSourceTypePhotoLibrary;
+//            
+//            imagePicker.mediaTypes =
+//            @[(NSString *) kUTTypeImage,
+//              (NSString *) kUTTypeMovie];
+//            
+//            imagePicker.allowsEditing = YES;
+//            [self presentViewController:imagePicker
+//                               animated:YES completion:nil];
+//            
+//        }
+//        else{
+//            
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Can't access photo library" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil,nil];
+//            [alert show];
+//            
+//        }
         
         
     }
@@ -295,10 +302,10 @@ CLLocationManager *locationManager;
             [self dismissModalViewControllerAnimated:YES];
         }
         
-        NSURL *url = info[UIImagePickerControllerReferenceURL];
+        photoURL = info[UIImagePickerControllerReferenceURL];
         ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
         
-        [assetsLibrary assetForURL:url resultBlock:^(ALAsset *asset) {
+        [assetsLibrary assetForURL:photoURL resultBlock:^(ALAsset *asset) {
             NSDate *date = [asset valueForProperty:ALAssetPropertyDate];
             
             NSLocale* currentLocale = [NSLocale currentLocale];
@@ -683,34 +690,7 @@ CLLocationManager *locationManager;
     NSString *messageString;
     bool errorInSubmission = NO;
     
-    if([_firstNameTextField.text isEqual: @""])
-    {
-        messageString = @"Please enter in your first name";
-        errorInSubmission = YES;
-    }
-    else if([_lastNameTextField.text  isEqual: @""])
-    {
-        messageString = @"Please enter in your last name";
-        errorInSubmission = YES;
-    }
-    else if([_emailTextField.text  isEqual: @""])
-    {
-        messageString = @"Please enter in your email";
-        errorInSubmission = YES;
-    }
-    else if([_groupPhylaTextField.text  isEqual: @"Group/Phyla"])
-    {
-        messageString = @"Please choose a Group/Phyla";
-        errorInSubmission = YES;
-    }
-    
-    if(errorInSubmission == YES)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Missing Field Detected" message:messageString delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil,nil];
-        [alert show];
-    }
-    else
-    {
+
         
         context = [self managedObjectContext];
         NSError *error;
@@ -725,7 +705,7 @@ CLLocationManager *locationManager;
             [_existingSighting setValue:[_emailTextField text] forKey:@"email"];
             
             if ([_affiliationSegControl selectedSegmentIndex] == 0) {
-                [_existingSighting setValue:@"UW Oshkosh" forKey:@"affiliation"];
+                [_existingSighting setValue:@"University of Wisconsin - Oshkosh" forKey:@"affiliation"];
             } else if ([_affiliationSegControl selectedSegmentIndex] == 1) {
                 [_existingSighting setValue:@"Other" forKey:@"affiliation"];
             }
@@ -796,6 +776,16 @@ CLLocationManager *locationManager;
             [_existingSighting setValue:videoTime forKeyPath:@"videoTime"];
             
             
+            //Weather
+//            [_existingSighting setValue:[NSNumber numberWithFloat:rain] forKeyPath:@"precipitation"];
+//            [_existingSighting setValue:[NSNumber numberWithFloat:temperature] forKeyPath:@"temperature"];
+//            [_existingSighting setValue:[self windDirectionForDegrees:windSpeed] forKeyPath:@"windDirection"];
+//            [_existingSighting setValue:[NSNumber numberWithFloat:pressure] forKeyPath:@"pressure"];
+//            [_existingSighting setValue:[NSNumber numberWithFloat:windSpeed] forKeyPath:@"windSpeed"];
+//            [_existingSighting setValue:precipitationMeasure forKeyPath:@"precipitationMeasure"];
+
+            
+            
             //Shouldn't be any need to re-save the weather or date
 
             [[_existingSighting managedObjectContext]save:&error];
@@ -822,7 +812,7 @@ CLLocationManager *locationManager;
             [s setValue:[_emailTextField text] forKey:@"email"];
             
             if ([_affiliationSegControl selectedSegmentIndex] == 0) {
-                [s setValue:@"UW Oshkosh" forKey:@"affiliation"];
+                [s setValue:@"University of Wisconsin - Oshkosh" forKey:@"affiliation"];
             } else if ([_affiliationSegControl selectedSegmentIndex] == 1) {
                 [s setValue:@"Other" forKey:@"affiliation"];
             }
@@ -890,7 +880,7 @@ CLLocationManager *locationManager;
             //Saving weather
             [s setValue:[NSNumber numberWithFloat:rain] forKey:@"precipitation"];
             [s setValue:[NSNumber numberWithFloat:temperature] forKey:@"temperature"];
-            [s setValue:[self windDirectionForDegrees:windSpeed] forKey:@"windDirection"];
+            [s setValue: windDirection forKey:@"windDirection"];
             [s setValue:[NSNumber numberWithFloat:pressure] forKey:@"pressure"];
             [s setValue:[NSNumber numberWithFloat:windSpeed] forKey:@"windSpeed"];
             [s setValue:precipitationMeasure forKey:@"precipitationMeasure"];
@@ -924,7 +914,8 @@ CLLocationManager *locationManager;
         [defaults setObject:[_emailTextField text] forKey:@"email"];
 
         [defaults synchronize];
-        
+    
+    
         
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Submission saved to local storage" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil,nil];
         [alert show];
@@ -933,7 +924,7 @@ CLLocationManager *locationManager;
         [self.tabBarController setSelectedIndex:1];
         
 
-    }
+    
     
     
     
@@ -1066,10 +1057,16 @@ CLLocationManager *locationManager;
     };
     static const int DirectionsCount = sizeof Directions / sizeof *Directions;
     
+    
+    
     int wind = remainder(round((degrees / 360) * DirectionsCount), DirectionsCount);
     if (wind < 0) wind += DirectionsCount;
     return Directions[wind];
 }
+
+
+
+
 -(void)weatherSavedAfterError:(float) r withDegrees :(float) degrees withWindSpeed:(float)windSp withWindDirection:(NSString*) windDir withPressure:(float) press withPrecipitationMeasure:(NSString*) precipMeasure;
 {
     _internetError = NO;
@@ -1095,5 +1092,263 @@ CLLocationManager *locationManager;
     [locationManager startUpdatingLocation];
     [locationManager startUpdatingHeading];
 }
+- (IBAction)submit:(id)sender {
+    
+    NSString *messageString;
+    bool errorInSubmission = NO;
+    
+
+    
+    
+    if([_firstNameTextField.text isEqual: @""])
+    {
+        messageString = @"Please enter in your first name";
+        errorInSubmission = YES;
+    }
+    else if([_lastNameTextField.text  isEqual: @""])
+    {
+        messageString = @"Please enter in your last name";
+        errorInSubmission = YES;
+    }
+    else if([_emailTextField.text  isEqual: @""])
+    {
+        messageString = @"Please enter in your email";
+        errorInSubmission = YES;
+    }
+    else if([_groupPhylaTextField.text  isEqual: @"Group/Phyla"])
+    {
+        messageString = @"Please choose a Group/Phyla";
+        errorInSubmission = YES;
+    }
+    
+    if(errorInSubmission == YES)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Missing Field Detected" message:messageString delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil,nil];
+        [alert show];
+    }
+    else
+    {
+        
+        //Time
+        if(photoTime == nil){
+            
+            
+            ActionSheetDatePicker *actionSheetPicker = [[ActionSheetDatePicker alloc] initWithTitle:@"Select a Date" datePickerMode:UIDatePickerModeDateAndTime selectedDate:[NSDate date] target:self action:@selector(dateWasSelected:element:) origin:sender];
+            actionSheetPicker.hideCancel = YES;
+            [actionSheetPicker showActionSheetPicker];
+            
+            
+        }
+        
+    }
+    
+    
+}
+- (void)dateWasSelected:(NSDate *)selectedDate element:(id)element {
+    
+    URL_FOR_SUBMISSION = @"http://awisconsinbestiary.org/submissions/";
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager setResponseSerializer:responseSerializer];
+
+    
+    [manager POST:URL_FOR_SUBMISSION parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+        
+        
+        [formData appendPartWithFormData:[[_firstNameTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"first-name"];
+        [formData appendPartWithFormData:[[_lastNameTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"last-name"];
+        [formData appendPartWithFormData:[[_emailTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"replyto"];
+        [formData appendPartWithFormData:[@"Bestiary Submission" dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"topic"];
+        if ([_affiliationSegControl selectedSegmentIndex] == 0) {
+            [formData appendPartWithFormData:[@"University of Wisconsin - Oshkosh" dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"school-affiliation"];
+            
+        } else if ([_affiliationSegControl selectedSegmentIndex] == 1) {
+            [formData appendPartWithFormData:[@"Other" dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"school-affiliation"];
+        }
+        
+        [formData appendPartWithFormData:[[_groupPhylaTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"animal"];
+        [formData appendPartWithFormData:[[_commonNameTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"common-name"];
+        [formData appendPartWithFormData:[[_speciesTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"species"];
+        [formData appendPartWithFormData:[[_amountTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"how-many-of-this-animal-did-you-see"];
+        [formData appendPartWithFormData:[[_behavioralTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"behavioral-description"];
+        [formData appendPartWithFormData:[[_countyTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"county"];
+        [formData appendPartWithFormData:[[_longitudeTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"logitude"];
+        [formData appendPartWithFormData:[[_altitudeTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"altitude"];
+        [formData appendPartWithFormData:[[_latitudeTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"latitude"];
+        
+        if ([_observationTechSegControl selectedSegmentIndex] == 0) {
+            [formData appendPartWithFormData:[@"Casual" dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"observational-technique-1"];
+        } else if ([_observationTechSegControl selectedSegmentIndex] == 1) {
+            [formData appendPartWithFormData:[@"Stationary" dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"observational-technique-1"];
+        }
+        else if ([_observationTechSegControl selectedSegmentIndex] == 2) {
+            [formData appendPartWithFormData:[@"Traveling" dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"observational-technique-1"];
+        }
+        else if ([_observationTechSegControl selectedSegmentIndex] == 3) {
+            [formData appendPartWithFormData:[@"Area" dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"observational-technique-1"];
+        }
+        
+        [formData appendPartWithFormData:[[_observationTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"observational-technique"];
+        
+        
+        
+        
+        if(isnan(temperature)){
+            [formData appendPartWithFormData:[@"" dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"degrees-celcius"];
+        }else{
+            [formData appendPartWithFormData:[[[NSNumber numberWithFloat:temperature] stringValue] dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"degrees-celcius"];
+        }
+        
+        if(isnan(windSpeed)){
+            [formData appendPartWithFormData:[@"" dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"wind-speed-mph"];
+        }else{
+            [formData appendPartWithFormData:[[[NSNumber numberWithFloat:windSpeed] stringValue] dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"wind-speed-mph"];
+        }
+        
+        if(windDirection == nil){
+            [formData appendPartWithFormData:[@"" dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"wind-direction"];
+        }else{
+            [formData appendPartWithFormData:[windDirection dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"wind-direction"];
+        }
+        
+        if(isnan(pressure)){
+            [formData appendPartWithFormData:[ @"" dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"pressure-mbar"];
+        }else{
+            [formData appendPartWithFormData:[[[NSNumber numberWithFloat:pressure] stringValue] dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"pressure-mbar"];
+        }
+        
+        
+        if(precipitationMeasure == nil){
+            
+            [formData appendPartWithFormData:[@"" dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"precipitation-inches"];
+        }else{
+            
+            [formData appendPartWithFormData:[precipitationMeasure dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"precipitation-inches"];
+        }
+        
+        
+        
+        
+        
+        
+        //START HERE
+        
+        if(photoURL != nil){
+            
+            NSError* error;
+            
+            [formData appendPartWithFileURL:photoURL name:@"image-to-append_file" fileName:photoURL.path mimeType:@"application/octet-stream" error:&error];
+            
+            if(error != nil){
+                //ALERT ERROR HERE
+            }
+            
+            
+        }
+        
+        if(audioUrl != nil){
+            if(![audioUrl  isEqual: @""]){
+                NSError* error;
+                
+                [formData appendPartWithFileURL:photoURL name:@"audio_file" fileName:audioUrl mimeType:@"application/octet-stream" error:&error];
+                
+                if(error != nil){
+                    //ALERT ERROR HERE
+                }
+            }
+            
+        }
+        
+        [formData appendPartWithFormData:[[_additionalTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"specific-text-you-would-like-used-to-aknowledge-photograph-interesting-anecdote-submission"];
+        //LAST REFERER
+        [formData appendPartWithFormData:[@"I agree" dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"agreement:list"];
+        
+        [formData appendPartWithFormData:[@"default" dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"fieldset"];
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"YYYY-MM-dd-hh-mm-a"];
+        //Optionally for time zone converstions
+        NSString *stringFromDate = [formatter stringFromDate:selectedDate];
+        
+        NSArray* dateExploded = [stringFromDate componentsSeparatedByString: @"-"];
+        
+        
+        [formData appendPartWithFormData:[@"" dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"date-photo-was-taken"];
+        
+        
+        [formData appendPartWithFormData:[[dateExploded objectAtIndex: 0] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"date-photo-was-taken_year"];
+        
+        [formData appendPartWithFormData:[[dateExploded objectAtIndex: 1] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"date-photo-was-taken_month"];
+        [formData appendPartWithFormData:[[dateExploded objectAtIndex: 2] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"date-photo-was-taken_day"];
+        [formData appendPartWithFormData:[[dateExploded objectAtIndex: 3] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"date-photo-was-taken_hour"];
+        [formData appendPartWithFormData:[[dateExploded objectAtIndex: 4] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"date-photo-was-taken_minute"];
+        
+        [formData appendPartWithFormData:[[dateExploded objectAtIndex: 5] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"date-photo-was-taken_ampm"];
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        // etc.
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Response: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+
+    
+    
+
+ 
+    
+}
+
+
+
 
 @end

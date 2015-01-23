@@ -5,6 +5,8 @@ target "UW Oshkosh Bestiary" do
 
 pod "AFNetworking", "~> 2.0"
 
+pod 'ActionSheetPicker-3.0', '~> 1.3.10'
+
 end
 
 target "UW Oshkosh BestiaryTests" do

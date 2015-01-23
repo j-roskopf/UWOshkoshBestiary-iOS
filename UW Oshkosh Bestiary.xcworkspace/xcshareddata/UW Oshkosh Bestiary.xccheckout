@@ -5,19 +5,19 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>641D7083-066A-4BB7-B750-4BBE59DC1270</string>
+	<string>4CFDD2A0-C04F-4045-8EB7-3E56CED05A75</string>
 	<key>IDESourceControlProjectName</key>
 	<string>UW Oshkosh Bestiary</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>985E5CB5-ED7E-4830-9ED0-DE561C849222</key>
+		<key>38F43471-BBF6-416B-B68E-F0511CBCB32E</key>
 		<string>https://github.com/j-roskopf/UWOshkoshBestiary-iOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>UW Oshkosh Bestiary.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>985E5CB5-ED7E-4830-9ED0-DE561C849222</key>
+		<key>38F43471-BBF6-416B-B68E-F0511CBCB32E</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>985E5CB5-ED7E-4830-9ED0-DE561C849222</string>
+	<string>38F43471-BBF6-416B-B68E-F0511CBCB32E</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>985E5CB5-ED7E-4830-9ED0-DE561C849222</string>
+			<string>38F43471-BBF6-416B-B68E-F0511CBCB32E</string>
 			<key>IDESourceControlWCCName</key>
 			<string>UW Oshkosh Bestiary</string>
 		</dict>
