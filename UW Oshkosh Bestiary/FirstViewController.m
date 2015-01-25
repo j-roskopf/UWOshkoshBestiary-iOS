@@ -1148,7 +1148,6 @@ CLLocationManager *locationManager;
     
     URL_FOR_SUBMISSION = @"http://awisconsinbestiary.org/submissions/";
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager setResponseSerializer:responseSerializer];
 
     
     [manager POST:URL_FOR_SUBMISSION parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
