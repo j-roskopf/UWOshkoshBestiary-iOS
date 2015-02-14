@@ -10,6 +10,7 @@
 #import "GroupPhylaViewController.h"
 #import "AudioRecordingViewController.h"
 #import "CountyViewController.h"
+#import "AssetsLibrary/AssetsLibrary.h"
 #import "Sighting.h"
 #import "AppDelegate.h"
 #import "ViewVideoViewController.h"
@@ -63,6 +64,7 @@ CLLocationManager *locationManager;
     NSString* URL_FOR_SUBMISSION;
     
     NSURL* photoURL;
+    NSData* photoData;
     
     //Stores the active text field
     UITextField* activeField;
@@ -73,6 +75,8 @@ CLLocationManager *locationManager;
     //Holds the recorded audio file
     AVAudioRecorder *recorder;
     AVAudioPlayer *player;
+    
+    UIActivityIndicatorView *indicator;
     
 
     
@@ -121,6 +125,57 @@ CLLocationManager *locationManager;
 
 }
 
+
+-(void)clearFields{
+    //Sets video to null
+    _videoURL = nil;
+    
+    //Sets the image back to the gray square
+    UIColor *color = [UIColor lightGrayColor];
+    UIImage *image = [self imageWithColor:color];
+    
+    //set the image to be a gray square
+    _imageOutlet.image = image;
+    
+    audioData = nil;
+    audioUrl = @"";
+    
+    _firstNameTextField.text = @"";
+    _lastNameTextField.text = @"";
+    _emailTextField.text = @"";
+    
+    [_affiliationSegControl setSelectedSegmentIndex:0];
+    
+    
+    _groupPhylaTextField.text = @"Group/Phyla";
+    _commonNameTextField.text = @"";
+    _speciesTextField.text = @"";
+    _amountTextField.text = @"";
+    _behavioralTextField.text = @"";
+    _countyTextField.text = @"County";
+    
+    
+    [_observationTechSegControl setSelectedSegmentIndex:0];
+    
+    _observationTextField.text = @"";
+    _ecosystemTextField.text = @"";
+    _additionalTextField.text = @"";
+    _longitudeTextField.text = @"";
+    _latitudeTextField.text = @"";
+    _altitudeTextField.text = @"";
+    
+    rain = 0;
+    temperature = 0;
+    windSpeed = 0;
+    windDirection = 0;
+    pressure = 0;
+    precipitationMeasure = @"3h";
+    
+    
+    [_locationSegControl setSelectedSegmentIndex:0];
+    
+    _existingSubmission = NO;
+}
 
 // yes button callback for clearing submission
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:
@@ -196,8 +251,7 @@ CLLocationManager *locationManager;
             UIImagePickerControllerSourceTypeCamera;
             
             imagePicker.mediaTypes =
-            @[(NSString *) kUTTypeImage,
-              (NSString *) kUTTypeMovie];
+            @[(NSString *) kUTTypeImage];
             
             imagePicker.allowsEditing = YES;
             [self presentViewController:imagePicker
@@ -253,6 +307,8 @@ CLLocationManager *locationManager;
 
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
+    NSLog(@"DID FINISH PICKING");
+    
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
 
     if ([mediaType isEqualToString:(NSString *)kUTTypeVideo] ||
@@ -303,18 +359,46 @@ CLLocationManager *locationManager;
         }
         
         photoURL = info[UIImagePickerControllerReferenceURL];
+        NSLog(@"Here123");
+        NSLog([photoURL absoluteString]);
         ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
         
         [assetsLibrary assetForURL:photoURL resultBlock:^(ALAsset *asset) {
+            
+            
+            ALAssetRepresentation *rep = [asset defaultRepresentation];
+            
+            if(photoData != nil){
+                NSLog(@"PHOTO DATA IS NOT NULL");
+        
+                
+            }
+            
             NSDate *date = [asset valueForProperty:ALAssetPropertyDate];
             
             NSLocale* currentLocale = [NSLocale currentLocale];
+            
+            [assetsLibrary writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:^(NSURL *assetURL, NSError *error){
+                if (error) {
+                    NSLog(@"error");
+                } else {
+                    photoURL = assetURL;
+                    NSLog(@"url %@", assetURL.absoluteString);
+                }
+            }];
             
             //If date = nil, that means the user took a new photo, so the video time will just be a new time stamp. If it's not null, then the date is of the time the file was created
             if(date == nil)
             {
                 NSDate *currentDate = [NSDate date];
                 photoTime = [currentDate descriptionWithLocale:currentLocale];
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"YYYY-MM-dd-hh-mm-a"];
+                photoTime = [dateFormatter stringFromDate:currentDate];
+
+
+                NSString *stringFromDate = [dateFormatter stringFromDate:[NSDate date]];
+                NSLog(@"today : %@", stringFromDate);
             }
             else
             {
@@ -323,6 +407,8 @@ CLLocationManager *locationManager;
         
             
         } failureBlock:nil];
+        
+
         
 
         
@@ -338,6 +424,14 @@ CLLocationManager *locationManager;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    //Setup progress
+    indicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
+    indicator.center = self.view.center;
+    [self.view addSubview:indicator];
+    [indicator bringSubviewToFront:self.view];
+    [indicator setHidden:NO];
+    
 
     //Hasnt been an internet connection error yet
     _internetError = NO;
@@ -396,6 +490,7 @@ CLLocationManager *locationManager;
     }
     else{
         UIImage *image = [UIImage imageWithData:[_existingSighting image]];
+        
         if(image != nil)
         {
             _imageOutlet.image = image;
@@ -404,12 +499,12 @@ CLLocationManager *locationManager;
         self.title = @"Existing Submission";
         
         audioUrl = _existingSighting.audioUrl;
+        
+        audioData = _existingSighting.audioData;
                 
-        if(audioUrl != nil)
+        if(audioData != nil)
         {
-            BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:audioUrl];
             
-            NSLog(fileExists ? @"yes" : @"no");
             _audioStatusTextField.text = @"Recorded";
             _audioStatusTextField.textAlignment = NSTextAlignmentCenter;
             audioData = _existingSighting.audioData;
@@ -418,6 +513,7 @@ CLLocationManager *locationManager;
 
         
         _videoURL = [NSURL URLWithString:_existingSighting.videoUrl];
+        photoURL = [NSURL URLWithString:_existingSighting.photoUrl];
         
         _firstNameTextField.text = _existingSighting.firstName;
         _lastNameTextField.text = _existingSighting.lastName;
@@ -575,12 +671,20 @@ CLLocationManager *locationManager;
 
 }
 
--(void)audioSavedWithRecorder:(AVAudioRecorder *) recorderWithSound withPlayer:(AVAudioPlayer*) playerWithSound{
+-(void)audioSavedWithRecorder:(AVAudioRecorder *) recorderWithSound withPlayer:(AVAudioPlayer*) playerWithSound withURL:(NSString*)audioSavedURL{
     _audioStatusTextField.text = @"Recorded";
     _audioStatusTextField.textAlignment = NSTextAlignmentCenter;
     
+    audioUrl = audioSavedURL;
     recorder = recorderWithSound;
     player = playerWithSound;
+
+    NSData *soundFile = [[NSData alloc] initWithContentsOfURL:recorder.url options:NSDataReadingMappedIfSafe error:nil];
+    audioData = soundFile;
+    
+    if(audioData == nil){
+        NSLog(@"YEAH ITS NILL IN AUDIO SAVED WITH RECORDER");
+    }
     
     BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:recorder.url.path];
     
@@ -618,24 +722,11 @@ CLLocationManager *locationManager;
         AudioRecordingViewController *audioController = segue.destinationViewController;
         NSLog(@"Here");
         audioController.delegate = self;
-        if(_existingSighting != nil){
-             NSLog(@"Here.5");
+        if(audioData != nil && audioUrl != nil){
             NSLog(@"Here1");
-            if(_existingSubmission)
-            {
-                NSLog(@"Here2");
-                if(audioUrl == nil && recorder.url.path != nil)
-                {
-                    NSLog(@"Here3");
-                    audioUrl = recorder.url.path;
-                }
-                audioController.existingFile = YES;
-                [audioController initPlayerFromSavedEntry:audioUrl withData:audioData];
-                
-        
+            audioController.existingFile = YES;
             
-                
-            }
+            [audioController initPlayerFromSavedEntry:audioUrl withData:audioData];
         }
 
         
@@ -758,13 +849,18 @@ CLLocationManager *locationManager;
             NSData *imageData = UIImagePNGRepresentation([_imageOutlet image]);
             [_existingSighting setValue:imageData forKey:@"image"];
             
-            if([player data] != nil)
+            if(audioData != nil)
             {
-                audioData = [player data];
+                NSLog(@"AUDIO DATA IS NOT NUYLL AT THIS POINT");
                 [_existingSighting setValue:audioData forKey:@"audioData"];
             }
             
-            [_existingSighting setValue:recorder.url.path forKey:@"audioUrl"];
+            [_existingSighting setValue:audioUrl forKey:@"audioUrl"];
+            if(photoURL != nil){
+                NSString *temp = [photoURL absoluteString];
+                [_existingSighting setValue:temp forKey:@"photoUrl"];
+
+            }
             
             NSString *videoData = _videoURL.absoluteString;
             [_existingSighting setValue:videoData forKey:@"videoUrl"];
@@ -789,7 +885,7 @@ CLLocationManager *locationManager;
             //Shouldn't be any need to re-save the weather or date
 
             [[_existingSighting managedObjectContext]save:&error];
-
+            
 
             [self.navigationController popViewControllerAnimated:YES];
             
@@ -810,6 +906,12 @@ CLLocationManager *locationManager;
             [s setValue:[_firstNameTextField text] forKey:@"firstName"];
             [s setValue:[_lastNameTextField text] forKey:@"lastName"];
             [s setValue:[_emailTextField text] forKey:@"email"];
+            
+            if(photoURL != nil){
+                [s setValue:[photoURL absoluteString] forKey:@"photoUrl"];
+
+            }
+
             
             if ([_affiliationSegControl selectedSegmentIndex] == 0) {
                 [s setValue:@"University of Wisconsin - Oshkosh" forKey:@"affiliation"];
@@ -866,11 +968,14 @@ CLLocationManager *locationManager;
             
             [s setValue:imageData forKey:@"image"];
             
-            audioData = [player data];
-
-            [s setValue:[[recorder url] path] forKey:@"audioUrl"];
+            [s setValue:audioUrl forKey:@"audioUrl"];
             
-            [s setValue: audioData forKey:@"audioData"];
+            if(audioData != nil){
+                NSLog(@"AUDIO DATA IS NOT NUYLL AT THIS POINT");
+
+                [s setValue: audioData forKey:@"audioData"];
+
+            }
             
             NSString *videoData = _videoURL.absoluteString;
             [s setValue:videoData forKey:@"videoUrl"];
@@ -1120,9 +1225,15 @@ CLLocationManager *locationManager;
         messageString = @"Please choose a Group/Phyla";
         errorInSubmission = YES;
     }
+    else if([_countyTextField.text  isEqual: @"County"])
+    {
+        messageString = @"Please choose a county";
+        errorInSubmission = YES;
+    }
     
     if(errorInSubmission == YES)
     {
+        NSLog(@"MISSING");
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Missing Field Detected" message:messageString delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil,nil];
         [alert show];
     }
@@ -1138,6 +1249,11 @@ CLLocationManager *locationManager;
             [actionSheetPicker showActionSheetPicker];
             
             
+        }else{
+            [indicator startAnimating];
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
+
+            [self submitWithCorrectDate];
         }
         
     }
@@ -1145,33 +1261,36 @@ CLLocationManager *locationManager;
     
 }
 - (void)dateWasSelected:(NSDate *)selectedDate element:(id)element {
+    [indicator startAnimating];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
+
     
     URL_FOR_SUBMISSION = @"http://awisconsinbestiary.org/submissions/";
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 
     
     [manager POST:URL_FOR_SUBMISSION parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        
-        
+                
         
         [formData appendPartWithFormData:[[_firstNameTextField text] dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"first-name"];
         [formData appendPartWithFormData:[[_lastNameTextField text] dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"last-name"];
         [formData appendPartWithFormData:[[_emailTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+         
                                     name:@"replyto"];
         [formData appendPartWithFormData:[@"Bestiary Submission" dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"topic"];
         if ([_affiliationSegControl selectedSegmentIndex] == 0) {
-            [formData appendPartWithFormData:[@"University of Wisconsin - Oshkosh" dataUsingEncoding:NSUTF8StringEncoding]
+            [formData appendPartWithFormData:[@"other1" dataUsingEncoding:NSUTF8StringEncoding]
                                         name:@"school-affiliation"];
             
         } else if ([_affiliationSegControl selectedSegmentIndex] == 1) {
-            [formData appendPartWithFormData:[@"Other" dataUsingEncoding:NSUTF8StringEncoding]
+            [formData appendPartWithFormData:[@"other1" dataUsingEncoding:NSUTF8StringEncoding]
                                         name:@"school-affiliation"];
         }
         
-        [formData appendPartWithFormData:[[_groupPhylaTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+        [formData appendPartWithFormData:[@"ameba" dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"animal"];
         [formData appendPartWithFormData:[[_commonNameTextField text] dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"common-name"];
@@ -1264,33 +1383,62 @@ CLLocationManager *locationManager;
         
         if(photoURL != nil){
             
+            NSLog(@"PHOTO URL IS NOT NULL");
+            NSLog([photoURL absoluteString]);
+            NSLog(photoURL.path);
+            
+
+            
+            if(_imageOutlet != nil){
+                NSLog(@"IMAGE OUTLET IS NOT NULL");
+                NSData *imageData = UIImagePNGRepresentation([_imageOutlet image]);
+                
+                if(imageData != nil){
+                    NSLog(@"IMAGE DATA IS NOT NULL");
+                    [formData appendPartWithFileData:imageData name:@"image-to-append_file" fileName:@"picture.png" mimeType:@"application/octet-stream"];
+                }
+
+            }
+            
+
+
+            
             NSError* error;
             
-            [formData appendPartWithFileURL:photoURL name:@"image-to-append_file" fileName:photoURL.path mimeType:@"application/octet-stream" error:&error];
             
             if(error != nil){
                 //ALERT ERROR HERE
+                NSLog(@"BUT THERE WAS AN ERROR %@",error);
             }
             
             
         }
         
-        if(audioUrl != nil){
-            if(![audioUrl  isEqual: @""]){
-                NSError* error;
-                
-                [formData appendPartWithFileURL:photoURL name:@"audio_file" fileName:audioUrl mimeType:@"application/octet-stream" error:&error];
-                
-                if(error != nil){
-                    //ALERT ERROR HERE
-                }
-            }
+        if(audioData != nil){
+            
+            
+            NSLog(@"AUDIO URL IS NOT NULL");
+            
+            
+            [formData appendPartWithFileData:audioData name:@"audio_file" fileName:@"audio_file.m4a" mimeType:@"application/octet-stream"];
+            
+            
+            
             
         }
         
         [formData appendPartWithFormData:[[_additionalTextField text] dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"specific-text-you-would-like-used-to-aknowledge-photograph-interesting-anecdote-submission"];
-        //LAST REFERER
+        
+        [formData appendPartWithFormData:[@"Submit" dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"form_submit"];
+        
+        [formData appendPartWithFormData:[@"6b9ec1bdad9b1656f6ebf3720017d3c9118ed11f" dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"_authenticator"];
+        
+        [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"form.submitted"];
+        
         [formData appendPartWithFormData:[@"I agree" dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"agreement:list"];
         
@@ -1309,9 +1457,18 @@ CLLocationManager *locationManager;
                                     name:@"date-photo-was-taken"];
         
         
+
+        
+        NSLog([dateExploded objectAtIndex: 0]);
+        NSLog([dateExploded objectAtIndex: 1]);
+        NSLog([dateExploded objectAtIndex: 2]);
+        NSLog([dateExploded objectAtIndex: 3]);
+        NSLog([dateExploded objectAtIndex: 4]);
+        NSLog([dateExploded objectAtIndex: 5]);
+        
         [formData appendPartWithFormData:[[dateExploded objectAtIndex: 0] dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"date-photo-was-taken_year"];
-        
+
         [formData appendPartWithFormData:[[dateExploded objectAtIndex: 1] dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"date-photo-was-taken_month"];
         [formData appendPartWithFormData:[[dateExploded objectAtIndex: 2] dataUsingEncoding:NSUTF8StringEncoding]
@@ -1320,7 +1477,6 @@ CLLocationManager *locationManager;
                                     name:@"date-photo-was-taken_hour"];
         [formData appendPartWithFormData:[[dateExploded objectAtIndex: 4] dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"date-photo-was-taken_minute"];
-        
         [formData appendPartWithFormData:[[dateExploded objectAtIndex: 5] dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"date-photo-was-taken_ampm"];
         
@@ -1336,8 +1492,48 @@ CLLocationManager *locationManager;
         // etc.
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Response: %@", responseObject);
+        [indicator stopAnimating];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = FALSE;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
+        //NSLog(@"Error: %@", operation.responseString);
+        [indicator stopAnimating];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = FALSE;
+        //Success
+        NSHTTPURLResponse *response = (NSHTTPURLResponse *)operation.response;
+        int statuscode = response.statusCode;
+        NSLog([NSString stringWithFormat:@"%i CHECHKING ERROR CODE",statuscode]);
+        
+        
+        
+        if(statuscode== 200) {
+            [self.navigationController popViewControllerAnimated:YES];
+
+            //dismiss progrees
+            //delete entry
+            if(_existingSubmission)
+            {
+                NSLog(@"YEAH ITS EXISTING SIGHTING");
+                [[_existingSighting managedObjectContext]deleteObject:_existingSighting];
+
+            }
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Submission successfully submitted" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil,nil];
+            [alert show];
+            
+            
+            
+            //[self.tabBarController setSelectedIndex:0];
+            [self clearFields];
+        }else{
+            //failure
+            
+            //dismiss progress
+        }
+        
+
+        
+        
+
     }];
 
     
@@ -1346,6 +1542,282 @@ CLLocationManager *locationManager;
  
     
 }
+
+- (void)submitWithCorrectDate {
+    
+    URL_FOR_SUBMISSION = @"http://awisconsinbestiary.org/submissions/";
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    
+    [manager POST:URL_FOR_SUBMISSION parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+        
+        [formData appendPartWithFormData:[[_firstNameTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"first-name"];
+        [formData appendPartWithFormData:[[_lastNameTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"last-name"];
+        [formData appendPartWithFormData:[[_emailTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+         
+                                    name:@"replyto"];
+        [formData appendPartWithFormData:[@"Bestiary Submission" dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"topic"];
+        if ([_affiliationSegControl selectedSegmentIndex] == 0) {
+            [formData appendPartWithFormData:[@"other1" dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"school-affiliation"];
+            
+        } else if ([_affiliationSegControl selectedSegmentIndex] == 1) {
+            [formData appendPartWithFormData:[@"other1" dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"school-affiliation"];
+        }
+        
+        [formData appendPartWithFormData:[@"ameba" dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"animal"];
+        [formData appendPartWithFormData:[[_commonNameTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"common-name"];
+        [formData appendPartWithFormData:[[_speciesTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"species"];
+        [formData appendPartWithFormData:[[_amountTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"how-many-of-this-animal-did-you-see"];
+        [formData appendPartWithFormData:[[_behavioralTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"behavioral-description"];
+        [formData appendPartWithFormData:[[_countyTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"county"];
+        [formData appendPartWithFormData:[[_longitudeTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"logitude"];
+        [formData appendPartWithFormData:[[_altitudeTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"altitude"];
+        [formData appendPartWithFormData:[[_latitudeTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"latitude"];
+        
+        if ([_observationTechSegControl selectedSegmentIndex] == 0) {
+            [formData appendPartWithFormData:[@"Casual" dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"observational-technique-1"];
+        } else if ([_observationTechSegControl selectedSegmentIndex] == 1) {
+            [formData appendPartWithFormData:[@"Stationary" dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"observational-technique-1"];
+        }
+        else if ([_observationTechSegControl selectedSegmentIndex] == 2) {
+            [formData appendPartWithFormData:[@"Traveling" dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"observational-technique-1"];
+        }
+        else if ([_observationTechSegControl selectedSegmentIndex] == 3) {
+            [formData appendPartWithFormData:[@"Area" dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"observational-technique-1"];
+        }
+        
+        [formData appendPartWithFormData:[[_observationTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"observational-technique"];
+        
+        
+        
+        
+        if(isnan(temperature)){
+            [formData appendPartWithFormData:[@"" dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"degrees-celcius"];
+        }else{
+            [formData appendPartWithFormData:[[[NSNumber numberWithFloat:temperature] stringValue] dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"degrees-celcius"];
+        }
+        
+        if(isnan(windSpeed)){
+            [formData appendPartWithFormData:[@"" dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"wind-speed-mph"];
+        }else{
+            [formData appendPartWithFormData:[[[NSNumber numberWithFloat:windSpeed] stringValue] dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"wind-speed-mph"];
+        }
+        
+        if(windDirection == nil){
+            [formData appendPartWithFormData:[@"" dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"wind-direction"];
+        }else{
+            [formData appendPartWithFormData:[windDirection dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"wind-direction"];
+        }
+        
+        if(isnan(pressure)){
+            [formData appendPartWithFormData:[ @"" dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"pressure-mbar"];
+        }else{
+            [formData appendPartWithFormData:[[[NSNumber numberWithFloat:pressure] stringValue] dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"pressure-mbar"];
+        }
+        
+        
+        if(precipitationMeasure == nil){
+            
+            [formData appendPartWithFormData:[@"" dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"precipitation-inches"];
+        }else{
+            
+            [formData appendPartWithFormData:[precipitationMeasure dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:@"precipitation-inches"];
+        }
+        
+        
+        
+        
+        
+        
+        //START HERE
+        
+        if(photoURL != nil){
+            
+            NSLog(@"PHOTO URL IS NOT NULL");
+            NSLog([photoURL absoluteString]);
+            NSLog(photoURL.path);
+            
+            
+            
+            if(_imageOutlet != nil){
+                NSLog(@"IMAGE OUTLET IS NOT NULL");
+                NSData *imageData = UIImagePNGRepresentation([_imageOutlet image]);
+                
+                if(imageData != nil){
+                    NSLog(@"IMAGE DATA IS NOT NULL");
+                    [formData appendPartWithFileData:imageData name:@"image-to-append_file" fileName:@"picture.png" mimeType:@"application/octet-stream"];
+                }
+                
+            }
+            
+            
+            
+            
+            NSError* error;
+            
+            
+            if(error != nil){
+                //ALERT ERROR HERE
+                NSLog(@"BUT THERE WAS AN ERROR %@",error);
+            }
+            
+            
+        }
+        
+        if(audioData != nil){
+            
+            
+            NSLog(@"AUDIO URL IS NOT NULL");
+            
+            
+            [formData appendPartWithFileData:audioData name:@"audio_file" fileName:@"audio_file.m4a" mimeType:@"application/octet-stream"];
+            
+
+            
+            
+        }
+        
+        [formData appendPartWithFormData:[[_additionalTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"specific-text-you-would-like-used-to-aknowledge-photograph-interesting-anecdote-submission"];
+        
+        [formData appendPartWithFormData:[@"Submit" dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"form_submit"];
+        
+        [formData appendPartWithFormData:[@"6b9ec1bdad9b1656f6ebf3720017d3c9118ed11f" dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"_authenticator"];
+        
+        [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"form.submitted"];
+        
+        [formData appendPartWithFormData:[@"I agree" dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"agreement:list"];
+        
+        [formData appendPartWithFormData:[@"default" dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"fieldset"];
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"YYYY-MM-dd-hh-mm-a"];
+        //Optionally for time zone converstions
+        
+        
+        
+        [formData appendPartWithFormData:[@"" dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"date-photo-was-taken"];
+        
+        
+        NSArray* dateExploded = [photoTime componentsSeparatedByString: @"-"];
+        
+        
+        
+        NSLog(@"time");
+        NSLog(photoTime);
+
+        
+        [formData appendPartWithFormData:[[dateExploded objectAtIndex: 0] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"date-photo-was-taken_year"];
+        [formData appendPartWithFormData:[[dateExploded objectAtIndex: 1] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"date-photo-was-taken_month"];
+        [formData appendPartWithFormData:[[dateExploded objectAtIndex: 2] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"date-photo-was-taken_day"];
+        [formData appendPartWithFormData:[[dateExploded objectAtIndex: 3] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"date-photo-was-taken_hour"];
+        [formData appendPartWithFormData:[[dateExploded objectAtIndex: 4] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"date-photo-was-taken_minute"];
+        [formData appendPartWithFormData:[[dateExploded objectAtIndex: 5] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"date-photo-was-taken_ampm"];
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        // etc.
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [indicator stopAnimating];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = FALSE;
+        NSLog(@"Response: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [indicator stopAnimating];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = FALSE;
+        //NSLog(@"Error: %@", operation.responseString);
+        
+        
+        NSHTTPURLResponse *response = (NSHTTPURLResponse *)operation.response;
+        int statuscode = response.statusCode;
+        NSLog([NSString stringWithFormat:@"%i CHECHKING ERROR CODE",statuscode]);
+        
+        
+        if(statuscode== 200) {
+            //dismiss progrees
+            //delete entry
+            [self.navigationController popViewControllerAnimated:YES];
+
+            
+            if(_existingSubmission)
+            {
+                NSLog(@"YEAH ITS EXISTING SIGHTING");
+                [[_existingSighting managedObjectContext]deleteObject:_existingSighting];
+            }
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Submission successfully submitted" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil,nil];
+            [alert show];
+            
+
+            
+            //[self.tabBarController setSelectedIndex:0];
+            [self clearFields];
+        }else{
+            //failure
+            
+            //dismiss progress
+        }
+        
+        
+    }];
+    
+    
+    
+    
+    
+    
+}
+
 
 
 

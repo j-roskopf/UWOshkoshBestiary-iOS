@@ -27,7 +27,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    groupPhylumNames = [NSArray arrayWithObjects:@"Ameba",@"Amphibians",@"Bird",@"Butterflies",@"Centipedes",@"Ciliates",@"Crustacean",@"Dragonflies",@"Fish",@"Flagellate",@"Flatworm",@"Hydrai",@"Leech",@"Mammal",@"Millpedes",@"Mussels",@"Reptile",@"Rotifer",@"Slug/Snails",@"Sponge",@"Ticks/Spiders",@"Unsure",nil];
+    groupPhylumNames = [NSArray arrayWithObjects:@"ameba",@"amphibians",@"birds",@"butterflies",@"centipedes",@"ciliates",@"crustacean",@"dragonflies",@"fish",@"flagellate",@"flatworm",@"hydra",@"leech",@"mammal",@"millipedes",@"mussels",@"meptile",@"motifer",@"slug/snails",@"sponge",@"ticks/spiders",@"unsure",nil];
     
     _pickerView.dataSource = self;
     _pickerView.delegate = self;

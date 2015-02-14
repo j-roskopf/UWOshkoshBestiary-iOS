@@ -20,6 +20,34 @@
                ReferencedContainer = "container:UW Oshkosh Bestiary.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D85286E61943943500DE5424"
+               BuildableName = "A Wisconsin Bestiary.app"
+               BlueprintName = "A Wisconsin Bestiary"
+               ReferencedContainer = "container:A Wisconsin Bestiary.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D85287061943943500DE5424"
+               BuildableName = "A Wisconsin BestiaryTests.xctest"
+               BlueprintName = "A Wisconsin BestiaryTests"
+               ReferencedContainer = "container:A Wisconsin Bestiary.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

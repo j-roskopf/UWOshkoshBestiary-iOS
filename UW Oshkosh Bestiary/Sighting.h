@@ -43,5 +43,6 @@
 @property (nonatomic, retain) NSNumber * windSpeed;
 @property (nonatomic, retain) NSString * photoTime;
 @property (nonatomic, retain) NSString * videoTime;
+@property (nonatomic, retain) NSString * photoUrl;
 
 @end

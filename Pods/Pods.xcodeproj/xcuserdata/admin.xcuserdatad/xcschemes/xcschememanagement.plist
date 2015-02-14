@@ -4,17 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-UW Oshkosh Bestiary-AFNetworking.xcscheme</key>
+		<key>Pods-A Wisconsin Bestiary-AFNetworking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-UW Oshkosh Bestiary-ActionSheetPicker-3.0.xcscheme</key>
+		<key>Pods-A Wisconsin Bestiary-ActionSheetPicker-3.0.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-UW Oshkosh Bestiary.xcscheme</key>
+		<key>Pods-A Wisconsin Bestiary.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -22,17 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>A048B275BD452BBA847DDEEA</key>
+		<key>9000A66F68E8400E4DCCE959</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BE8FA938FAEC94A27B6D3B2E</key>
+		<key>9F36F314722C28A7AF181139</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F5D122237A79D1C174A6D2E6</key>
+		<key>B822192157440D1B70DB0A3D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

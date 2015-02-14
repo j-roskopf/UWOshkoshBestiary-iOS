@@ -43,55 +43,52 @@
     
 
     
-    // Create a new dated file
-    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:savedUrl];
+
     
-    if(!_existingFile && fileExists)
+    if(audioData == nil)
     {
-        NSArray *dirPaths;
-        NSString *docsDir;
+        // Set the audio file
+        NSArray *pathComponents = [NSArray arrayWithObjects:
+                                   [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
+                                   @"MyAudioMemo.m4a",
+                                   nil];
         
-        dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        docsDir = dirPaths[0];
+        soundFileURL = [NSURL fileURLWithPathComponents:pathComponents];
+        savedUrl = [soundFileURL absoluteString];
         
-        time_t unixTime = (time_t) [[NSDate date] timeIntervalSince1970];
-        NSString *timeStamp=[NSString stringWithFormat:@"%ld",unixTime];
         
-        savedUrl = [docsDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_recordedSound.caf",timeStamp]];
+
     }
     else{
         
         
-        NSLog(fileExists ? @"yes" : @"no");
+        NSLog(@"audio data is not null");
         [_playButton setEnabled:YES];
-}
+        soundFileURL = [NSURL URLWithString:savedUrl];
 
-    
-    soundFileURL = [NSURL fileURLWithPath:savedUrl];
-    
 
-    
-    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord
-                        error:nil];
-    
 
-    NSDictionary *recordSettings = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    [NSNumber numberWithInt:AVAudioQualityMin],
-                                    AVEncoderAudioQualityKey,
-                                    [NSNumber numberWithInt:16],
-                                    AVEncoderBitRateKey,
-                                    [NSNumber numberWithInt:2],
-                                    AVNumberOfChannelsKey,
-                                    [NSNumber numberWithFloat:44100.0],
-                                    AVSampleRateKey,
-                                    nil];
-    
-    NSError *error = nil;
-    recorder = [[AVAudioRecorder alloc] initWithURL:soundFileURL settings:recordSettings error:&error];
-    if(error){
-        NSLog(@"error: %@", [error localizedDescription]);
     }
+
+    
+    
+
+    // Setup audio session
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+    
+    // Define the recorder setting
+    NSMutableDictionary *recordSetting = [[NSMutableDictionary alloc] init];
+    
+    [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
+    [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
+    [recordSetting setValue:[NSNumber numberWithInt: 2] forKey:AVNumberOfChannelsKey];
+    
+    // Initiate and prepare the recorder
+    recorder = [[AVAudioRecorder alloc] initWithURL:soundFileURL settings:recordSetting error:nil];
+    recorder.delegate = self;
+    recorder.meteringEnabled = YES;
+    [recorder prepareToRecord];
 
 
     
@@ -106,47 +103,61 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)play:(id)sender {
-    if(!recorder.recording){
-        _recordButton.enabled = NO;
-        _stopButton.enabled = YES;
-        
-        NSError *error1;
-        NSError *error2;
-        NSData *soundFile = [[NSData alloc] initWithContentsOfURL:recorder.url options:NSDataReadingMappedIfSafe error:&error1];
-        
-        player = [[AVAudioPlayer alloc] initWithData:soundFile error:&error2];
-        
-        player.delegate = self;
-        
-        if(error1){
-            NSLog(@"error1: %@", [error1 localizedDescription]);
-        } else if (error2) {
-            NSLog(@"error2: %@", [error2 localizedDescription]);
-        } else {
-            [player play];
+    if (!recorder.recording){
+        if(audioData == nil){
+            player = [[AVAudioPlayer alloc] initWithContentsOfURL:recorder.url error:nil];
+        }else{
+            player = [[AVAudioPlayer alloc] initWithData:audioData error:nil];
         }
+        [player setDelegate:self];
+        [player play];
+        
+        [_stopButton setEnabled:NO];
+        [_recordButton setEnabled:YES];
     }
-    
-    [_stopButton setEnabled:NO];
-    [_recordButton setEnabled:YES];
+//    if(!recorder.recording){
+//        _recordButton.enabled = NO;
+//        _stopButton.enabled = YES;
+//        
+//        NSError *error1;
+//        NSError *error2;
+//        NSData *soundFile = [[NSData alloc] initWithContentsOfURL:recorder.url options:NSDataReadingMappedIfSafe error:&error1];
+//        audioData = soundFile;
+//        
+//        if(audioData != nil){
+//            player = [[AVAudioPlayer alloc] initWithData:audioData error:&error2];
+//        }
+//        
+//        player.delegate = self;
+//        
+//        if(error1){
+//            NSLog(@"error1: %@", [error1 localizedDescription]);
+//        } else if (error2) {
+//            NSLog(@"error2: %@", [error2 localizedDescription]);
+//        } else {
+//            [player play];
+//        }
+//    }
+//    
+//    [_stopButton setEnabled:NO];
+//    [_recordButton setEnabled:YES];
    
 }
 - (IBAction)stop:(id)sender {
+    
     [recorder stop];
+    
+    NSData *soundFile = [[NSData alloc] initWithContentsOfURL:recorder.url options:NSDataReadingMappedIfSafe error:nil];
+    audioData = soundFile;
     
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setActive:NO error:nil];
     
     [_playButton setEnabled:YES];
     
-    [_recordButton setEnabled:YES];
+    [_recordButton setEnabled:NO];
     
     [_recordButton setTitle:@"Record" forState:UIControlStateNormal];
-    
-
-
-
-    
     
     
 }
@@ -156,17 +167,15 @@
 }
 - (IBAction)recordAndPause:(id)sender {
 
-    [recorder prepareToRecord];
-    // Stop the audio player before recording
+
+    
     if (player.playing) {
         [player stop];
     }
     
-    [_stopButton setEnabled:YES];
-    [_playButton setEnabled:NO];
-
-    
     if (!recorder.recording) {
+        AVAudioSession *session = [AVAudioSession sharedInstance];
+        [session setActive:YES error:nil];
         
         // Start recording
         [recorder record];
@@ -178,6 +187,10 @@
         [recorder pause];
         [_recordButton setTitle:@"Record" forState:UIControlStateNormal];
     }
+    
+
+    [_stopButton setEnabled:YES];
+    [_playButton setEnabled:NO];
     
 }
 
@@ -192,9 +205,18 @@
     
 }
 - (IBAction)saveFile:(id)sender {
+    
+    
 
+    
+
+    
+    if(audioData == nil){
+        NSLog(@"YEAH ITS NULL");
+    }
     [recorder stop];
-    [_delegate audioSavedWithRecorder:recorder withPlayer:player];
+    [[player data] writeToURL:[NSURL URLWithString:savedUrl] atomically:YES];
+    [_delegate audioSavedWithRecorder:recorder withPlayer:player withURL:savedUrl];
     [self.navigationController popViewControllerAnimated:YES];
     
 }

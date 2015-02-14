@@ -1,0 +1,642 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		84343CCA196CACF700D107C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84343CC9196CACF700D107C6 /* Main.storyboard */; };
+		84343CCD196CAD0200D107C6 /* AudioRecordingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84343CCC196CAD0200D107C6 /* AudioRecordingViewController.m */; };
+		84343CD4196CAD1200D107C6 /* CountyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84343CCF196CAD1200D107C6 /* CountyViewController.m */; };
+		84343CD5196CAD1200D107C6 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84343CD1196CAD1200D107C6 /* FirstViewController.m */; };
+		84343CD6196CAD1200D107C6 /* GroupPhylaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84343CD3196CAD1200D107C6 /* GroupPhylaViewController.m */; };
+		843A285B196F54A200852E74 /* Sighting.m in Sources */ = {isa = PBXBuildFile; fileRef = 843A285A196F54A200852E74 /* Sighting.m */; };
+		843A285D196F897200852E74 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 843A285C196F897200852E74 /* AssetsLibrary.framework */; };
+		8493BFF61A78941600B9C2F3 /* HMFJSONResponseSerializerWithData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8493BFF51A78941600B9C2F3 /* HMFJSONResponseSerializerWithData.m */; };
+		84C161C61A8873210037DCA7 /* A Wisconsin Bestiary-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84C161C41A8873210037DCA7 /* A Wisconsin Bestiary-Info.plist */; };
+		C3AED598F74E87F4AF825A36 /* libPods-A Wisconsin Bestiary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 700A77E501BBA58AAB522B73 /* libPods-A Wisconsin Bestiary.a */; };
+		D83F8D3E19520DF800FD4C9A /* ViewVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D83F8D3D19520DF800FD4C9A /* ViewVideoViewController.m */; };
+		D85286EB1943943500DE5424 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85286EA1943943500DE5424 /* Foundation.framework */; };
+		D85286ED1943943500DE5424 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85286EC1943943500DE5424 /* CoreGraphics.framework */; };
+		D85286EF1943943500DE5424 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85286EE1943943500DE5424 /* UIKit.framework */; };
+		D85286F11943943500DE5424 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85286F01943943500DE5424 /* CoreData.framework */; };
+		D85286F71943943500DE5424 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D85286F51943943500DE5424 /* InfoPlist.strings */; };
+		D85286F91943943500DE5424 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D85286F81943943500DE5424 /* main.m */; };
+		D85286FD1943943500DE5424 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D85286FC1943943500DE5424 /* AppDelegate.m */; };
+		D85287001943943500DE5424 /* UW_Oshkosh_Bestiary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D85286FE1943943500DE5424 /* UW_Oshkosh_Bestiary.xcdatamodeld */; };
+		D85287021943943500DE5424 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D85287011943943500DE5424 /* Images.xcassets */; };
+		D85287091943943500DE5424 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85287081943943500DE5424 /* XCTest.framework */; };
+		D852870A1943943500DE5424 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85286EA1943943500DE5424 /* Foundation.framework */; };
+		D852870B1943943500DE5424 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85286EE1943943500DE5424 /* UIKit.framework */; };
+		D852870C1943943500DE5424 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85286F01943943500DE5424 /* CoreData.framework */; };
+		D85287141943943500DE5424 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D85287121943943500DE5424 /* InfoPlist.strings */; };
+		D85287161943943500DE5424 /* UW_Oshkosh_BestiaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D85287151943943500DE5424 /* UW_Oshkosh_BestiaryTests.m */; };
+		D85287351943968E00DE5424 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85287341943968E00DE5424 /* AVFoundation.framework */; };
+		D85287931947626A00DE5424 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85287921947626A00DE5424 /* CoreLocation.framework */; };
+		D88CB59F194E7C8D008B478C /* ExistingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D88CB59E194E7C8D008B478C /* ExistingTableViewController.m */; };
+		D8F81CD0194CE4B40073D7DD /* WeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F81CCF194CE4B40073D7DD /* WeatherViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D852870D1943943500DE5424 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D85286DF1943943500DE5424 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D85286E61943943500DE5424;
+			remoteInfo = "UW Oshkosh Bestiary";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		26EC763F841E431EAFECBE8F /* libPods-UW Oshkosh Bestiary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UW Oshkosh Bestiary.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		700A77E501BBA58AAB522B73 /* libPods-A Wisconsin Bestiary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-A Wisconsin Bestiary.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		741211D87783CE05991BF2BE /* Pods-A Wisconsin Bestiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-A Wisconsin Bestiary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-A Wisconsin Bestiary/Pods-A Wisconsin Bestiary.debug.xcconfig"; sourceTree = "<group>"; };
+		84343CC9196CACF700D107C6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		84343CCB196CAD0200D107C6 /* AudioRecordingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecordingViewController.h; sourceTree = "<group>"; };
+		84343CCC196CAD0200D107C6 /* AudioRecordingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecordingViewController.m; sourceTree = "<group>"; };
+		84343CCE196CAD1200D107C6 /* CountyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountyViewController.h; sourceTree = "<group>"; };
+		84343CCF196CAD1200D107C6 /* CountyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountyViewController.m; sourceTree = "<group>"; };
+		84343CD0196CAD1200D107C6 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		84343CD1196CAD1200D107C6 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		84343CD2196CAD1200D107C6 /* GroupPhylaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupPhylaViewController.h; sourceTree = "<group>"; };
+		84343CD3196CAD1200D107C6 /* GroupPhylaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupPhylaViewController.m; sourceTree = "<group>"; };
+		843A2859196F54A200852E74 /* Sighting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sighting.h; sourceTree = "<group>"; };
+		843A285A196F54A200852E74 /* Sighting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sighting.m; sourceTree = "<group>"; };
+		843A285C196F897200852E74 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		84833BEE196CB18C00B11E9E /* libPods-UW Oshkosh Bestiary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-UW Oshkosh Bestiary.a"; path = "Pods/build/Debug-iphoneos/libPods-UW Oshkosh Bestiary.a"; sourceTree = "<group>"; };
+		84833BF0196CB1A200B11E9E /* libPods-UW Oshkosh Bestiary-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-UW Oshkosh Bestiary-AFNetworking.a"; path = "Pods/build/Debug-iphoneos/libPods-UW Oshkosh Bestiary-AFNetworking.a"; sourceTree = "<group>"; };
+		8493BFF41A78941600B9C2F3 /* HMFJSONResponseSerializerWithData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMFJSONResponseSerializerWithData.h; sourceTree = "<group>"; };
+		8493BFF51A78941600B9C2F3 /* HMFJSONResponseSerializerWithData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMFJSONResponseSerializerWithData.m; sourceTree = "<group>"; };
+		8496EFEC196CB7FD0074762A /* libPods-UW Oshkosh Bestiary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-UW Oshkosh Bestiary.a"; path = "Pods/build/Debug-iphoneos/libPods-UW Oshkosh Bestiary.a"; sourceTree = "<group>"; };
+		84C161C41A8873210037DCA7 /* A Wisconsin Bestiary-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "A Wisconsin Bestiary-Info.plist"; sourceTree = "<group>"; };
+		84C161C51A8873210037DCA7 /* A Wisconsin Bestiary-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "A Wisconsin Bestiary-Prefix.pch"; sourceTree = "<group>"; };
+		ABB808DE88A2C63B5903FC36 /* Pods-A Wisconsin Bestiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-A Wisconsin Bestiary.release.xcconfig"; path = "Pods/Target Support Files/Pods-A Wisconsin Bestiary/Pods-A Wisconsin Bestiary.release.xcconfig"; sourceTree = "<group>"; };
+		BB0DD891F448B3A4C5ABE535 /* Pods-UW Oshkosh Bestiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UW Oshkosh Bestiary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UW Oshkosh Bestiary/Pods-UW Oshkosh Bestiary.debug.xcconfig"; sourceTree = "<group>"; };
+		D83F8D3C19520DF800FD4C9A /* ViewVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewVideoViewController.h; sourceTree = "<group>"; };
+		D83F8D3D19520DF800FD4C9A /* ViewVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewVideoViewController.m; sourceTree = "<group>"; };
+		D85286E71943943500DE5424 /* A Wisconsin Bestiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "A Wisconsin Bestiary.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D85286EA1943943500DE5424 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D85286EC1943943500DE5424 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D85286EE1943943500DE5424 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D85286F01943943500DE5424 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D85286F41943943500DE5424 /* A Wisconsin Bestiary-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "A Wisconsin Bestiary-Info.plist"; sourceTree = "<group>"; };
+		D85286F61943943500DE5424 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D85286F81943943500DE5424 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D85286FA1943943500DE5424 /* A Wisconsin Bestiary-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "A Wisconsin Bestiary-Prefix.pch"; sourceTree = "<group>"; };
+		D85286FB1943943500DE5424 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D85286FC1943943500DE5424 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D85286FF1943943500DE5424 /* UW_Oshkosh_Bestiary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UW_Oshkosh_Bestiary.xcdatamodel; sourceTree = "<group>"; };
+		D85287011943943500DE5424 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D85287071943943500DE5424 /* A Wisconsin BestiaryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "A Wisconsin BestiaryTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D85287081943943500DE5424 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D85287111943943500DE5424 /* A Wisconsin BestiaryTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "A Wisconsin BestiaryTests-Info.plist"; sourceTree = "<group>"; };
+		D85287131943943500DE5424 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D85287151943943500DE5424 /* UW_Oshkosh_BestiaryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UW_Oshkosh_BestiaryTests.m; sourceTree = "<group>"; };
+		D85287341943968E00DE5424 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		D85287921947626A00DE5424 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D88CB59D194E7C8D008B478C /* ExistingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExistingTableViewController.h; sourceTree = "<group>"; };
+		D88CB59E194E7C8D008B478C /* ExistingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExistingTableViewController.m; sourceTree = "<group>"; };
+		D8F81CCE194CE4B40073D7DD /* WeatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherViewController.h; sourceTree = "<group>"; };
+		D8F81CCF194CE4B40073D7DD /* WeatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherViewController.m; sourceTree = "<group>"; };
+		F5EF5C6D3C4D2FE676B85599 /* Pods-UW Oshkosh Bestiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UW Oshkosh Bestiary.release.xcconfig"; path = "Pods/Target Support Files/Pods-UW Oshkosh Bestiary/Pods-UW Oshkosh Bestiary.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D85286E41943943500DE5424 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				843A285D196F897200852E74 /* AssetsLibrary.framework in Frameworks */,
+				D85287931947626A00DE5424 /* CoreLocation.framework in Frameworks */,
+				D85287351943968E00DE5424 /* AVFoundation.framework in Frameworks */,
+				D85286ED1943943500DE5424 /* CoreGraphics.framework in Frameworks */,
+				D85286F11943943500DE5424 /* CoreData.framework in Frameworks */,
+				D85286EF1943943500DE5424 /* UIKit.framework in Frameworks */,
+				D85286EB1943943500DE5424 /* Foundation.framework in Frameworks */,
+				C3AED598F74E87F4AF825A36 /* libPods-A Wisconsin Bestiary.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D85287041943943500DE5424 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D85287091943943500DE5424 /* XCTest.framework in Frameworks */,
+				D852870C1943943500DE5424 /* CoreData.framework in Frameworks */,
+				D852870B1943943500DE5424 /* UIKit.framework in Frameworks */,
+				D852870A1943943500DE5424 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		20956CF2D1551EDEA24B216A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BB0DD891F448B3A4C5ABE535 /* Pods-UW Oshkosh Bestiary.debug.xcconfig */,
+				F5EF5C6D3C4D2FE676B85599 /* Pods-UW Oshkosh Bestiary.release.xcconfig */,
+				741211D87783CE05991BF2BE /* Pods-A Wisconsin Bestiary.debug.xcconfig */,
+				ABB808DE88A2C63B5903FC36 /* Pods-A Wisconsin Bestiary.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D85286DE1943943500DE5424 = {
+			isa = PBXGroup;
+			children = (
+				D85286F21943943500DE5424 /* UW Oshkosh Bestiary */,
+				D852870F1943943500DE5424 /* UW Oshkosh BestiaryTests */,
+				D85286E91943943500DE5424 /* Frameworks */,
+				D85286E81943943500DE5424 /* Products */,
+				20956CF2D1551EDEA24B216A /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		D85286E81943943500DE5424 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D85286E71943943500DE5424 /* A Wisconsin Bestiary.app */,
+				D85287071943943500DE5424 /* A Wisconsin BestiaryTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D85286E91943943500DE5424 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				843A285C196F897200852E74 /* AssetsLibrary.framework */,
+				8496EFEC196CB7FD0074762A /* libPods-UW Oshkosh Bestiary.a */,
+				84833BF0196CB1A200B11E9E /* libPods-UW Oshkosh Bestiary-AFNetworking.a */,
+				84833BEE196CB18C00B11E9E /* libPods-UW Oshkosh Bestiary.a */,
+				D85287921947626A00DE5424 /* CoreLocation.framework */,
+				D85287341943968E00DE5424 /* AVFoundation.framework */,
+				D85286EA1943943500DE5424 /* Foundation.framework */,
+				D85286EC1943943500DE5424 /* CoreGraphics.framework */,
+				D85286EE1943943500DE5424 /* UIKit.framework */,
+				D85286F01943943500DE5424 /* CoreData.framework */,
+				D85287081943943500DE5424 /* XCTest.framework */,
+				26EC763F841E431EAFECBE8F /* libPods-UW Oshkosh Bestiary.a */,
+				700A77E501BBA58AAB522B73 /* libPods-A Wisconsin Bestiary.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D85286F21943943500DE5424 /* UW Oshkosh Bestiary */ = {
+			isa = PBXGroup;
+			children = (
+				84343CCE196CAD1200D107C6 /* CountyViewController.h */,
+				84343CCF196CAD1200D107C6 /* CountyViewController.m */,
+				84343CD0196CAD1200D107C6 /* FirstViewController.h */,
+				84343CD1196CAD1200D107C6 /* FirstViewController.m */,
+				84343CD2196CAD1200D107C6 /* GroupPhylaViewController.h */,
+				84343CD3196CAD1200D107C6 /* GroupPhylaViewController.m */,
+				84343CCB196CAD0200D107C6 /* AudioRecordingViewController.h */,
+				84C161C41A8873210037DCA7 /* A Wisconsin Bestiary-Info.plist */,
+				84C161C51A8873210037DCA7 /* A Wisconsin Bestiary-Prefix.pch */,
+				84343CCC196CAD0200D107C6 /* AudioRecordingViewController.m */,
+				84343CC9196CACF700D107C6 /* Main.storyboard */,
+				D83F8D3C19520DF800FD4C9A /* ViewVideoViewController.h */,
+				D83F8D3D19520DF800FD4C9A /* ViewVideoViewController.m */,
+				D8F81CCE194CE4B40073D7DD /* WeatherViewController.h */,
+				D8F81CCF194CE4B40073D7DD /* WeatherViewController.m */,
+				D88CB59D194E7C8D008B478C /* ExistingTableViewController.h */,
+				D88CB59E194E7C8D008B478C /* ExistingTableViewController.m */,
+				D85286FB1943943500DE5424 /* AppDelegate.h */,
+				D85286FC1943943500DE5424 /* AppDelegate.m */,
+				D85287011943943500DE5424 /* Images.xcassets */,
+				D85286FE1943943500DE5424 /* UW_Oshkosh_Bestiary.xcdatamodeld */,
+				843A2859196F54A200852E74 /* Sighting.h */,
+				8493BFF41A78941600B9C2F3 /* HMFJSONResponseSerializerWithData.h */,
+				8493BFF51A78941600B9C2F3 /* HMFJSONResponseSerializerWithData.m */,
+				843A285A196F54A200852E74 /* Sighting.m */,
+				D85286F31943943500DE5424 /* Supporting Files */,
+			);
+			path = "UW Oshkosh Bestiary";
+			sourceTree = "<group>";
+		};
+		D85286F31943943500DE5424 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D85286F41943943500DE5424 /* A Wisconsin Bestiary-Info.plist */,
+				D85286F51943943500DE5424 /* InfoPlist.strings */,
+				D85286F81943943500DE5424 /* main.m */,
+				D85286FA1943943500DE5424 /* A Wisconsin Bestiary-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D852870F1943943500DE5424 /* UW Oshkosh BestiaryTests */ = {
+			isa = PBXGroup;
+			children = (
+				D85287151943943500DE5424 /* UW_Oshkosh_BestiaryTests.m */,
+				D85287101943943500DE5424 /* Supporting Files */,
+			);
+			path = "UW Oshkosh BestiaryTests";
+			sourceTree = "<group>";
+		};
+		D85287101943943500DE5424 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D85287111943943500DE5424 /* A Wisconsin BestiaryTests-Info.plist */,
+				D85287121943943500DE5424 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D85286E61943943500DE5424 /* A Wisconsin Bestiary */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D85287191943943500DE5424 /* Build configuration list for PBXNativeTarget "A Wisconsin Bestiary" */;
+			buildPhases = (
+				15F2598F3056403EAE1D42BC /* Check Pods Manifest.lock */,
+				D85286E31943943500DE5424 /* Sources */,
+				D85286E41943943500DE5424 /* Frameworks */,
+				D85286E51943943500DE5424 /* Resources */,
+				B3314DC880974AC194AAA8EC /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "A Wisconsin Bestiary";
+			productName = "UW Oshkosh Bestiary";
+			productReference = D85286E71943943500DE5424 /* A Wisconsin Bestiary.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D85287061943943500DE5424 /* A Wisconsin BestiaryTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D852871C1943943500DE5424 /* Build configuration list for PBXNativeTarget "A Wisconsin BestiaryTests" */;
+			buildPhases = (
+				D85287031943943500DE5424 /* Sources */,
+				D85287041943943500DE5424 /* Frameworks */,
+				D85287051943943500DE5424 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D852870E1943943500DE5424 /* PBXTargetDependency */,
+			);
+			name = "A Wisconsin BestiaryTests";
+			productName = "UW Oshkosh BestiaryTests";
+			productReference = D85287071943943500DE5424 /* A Wisconsin BestiaryTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D85286DF1943943500DE5424 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "A Wisconsin Bestiary";
+				TargetAttributes = {
+					D85286E61943943500DE5424 = {
+						DevelopmentTeam = 24R79PWUP6;
+					};
+					D85287061943943500DE5424 = {
+						TestTargetID = D85286E61943943500DE5424;
+					};
+				};
+			};
+			buildConfigurationList = D85286E21943943500DE5424 /* Build configuration list for PBXProject "A Wisconsin Bestiary" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D85286DE1943943500DE5424;
+			productRefGroup = D85286E81943943500DE5424 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D85286E61943943500DE5424 /* A Wisconsin Bestiary */,
+				D85287061943943500DE5424 /* A Wisconsin BestiaryTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D85286E51943943500DE5424 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84343CCA196CACF700D107C6 /* Main.storyboard in Resources */,
+				D85286F71943943500DE5424 /* InfoPlist.strings in Resources */,
+				D85287021943943500DE5424 /* Images.xcassets in Resources */,
+				84C161C61A8873210037DCA7 /* A Wisconsin Bestiary-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D85287051943943500DE5424 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D85287141943943500DE5424 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		15F2598F3056403EAE1D42BC /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B3314DC880974AC194AAA8EC /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-A Wisconsin Bestiary/Pods-A Wisconsin Bestiary-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D85286E31943943500DE5424 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D85286FD1943943500DE5424 /* AppDelegate.m in Sources */,
+				D88CB59F194E7C8D008B478C /* ExistingTableViewController.m in Sources */,
+				8493BFF61A78941600B9C2F3 /* HMFJSONResponseSerializerWithData.m in Sources */,
+				D8F81CD0194CE4B40073D7DD /* WeatherViewController.m in Sources */,
+				D85287001943943500DE5424 /* UW_Oshkosh_Bestiary.xcdatamodeld in Sources */,
+				D83F8D3E19520DF800FD4C9A /* ViewVideoViewController.m in Sources */,
+				84343CCD196CAD0200D107C6 /* AudioRecordingViewController.m in Sources */,
+				843A285B196F54A200852E74 /* Sighting.m in Sources */,
+				84343CD5196CAD1200D107C6 /* FirstViewController.m in Sources */,
+				84343CD6196CAD1200D107C6 /* GroupPhylaViewController.m in Sources */,
+				84343CD4196CAD1200D107C6 /* CountyViewController.m in Sources */,
+				D85286F91943943500DE5424 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D85287031943943500DE5424 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D85287161943943500DE5424 /* UW_Oshkosh_BestiaryTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D852870E1943943500DE5424 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D85286E61943943500DE5424 /* A Wisconsin Bestiary */;
+			targetProxy = D852870D1943943500DE5424 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D85286F51943943500DE5424 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D85286F61943943500DE5424 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D85287121943943500DE5424 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D85287131943943500DE5424 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D85287171943943500DE5424 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				"TEST_HOST[sdk=*]" = "";
+			};
+			name = Debug;
+		};
+		D85287181943943500DE5424 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D852871A1943943500DE5424 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 741211D87783CE05991BF2BE /* Pods-A Wisconsin Bestiary.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UW Oshkosh Bestiary/A Wisconsin Bestiary-Prefix.pch";
+				INFOPLIST_FILE = "UW Oshkosh Bestiary/A Wisconsin Bestiary-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
+				PRODUCT_NAME = "A Wisconsin Bestiary";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D852871B1943943500DE5424 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ABB808DE88A2C63B5903FC36 /* Pods-A Wisconsin Bestiary.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UW Oshkosh Bestiary/A Wisconsin Bestiary-Prefix.pch";
+				INFOPLIST_FILE = "UW Oshkosh Bestiary/A Wisconsin Bestiary-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
+				PRODUCT_NAME = "A Wisconsin Bestiary";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		D852871D1943943500DE5424 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UW Oshkosh Bestiary/A Wisconsin Bestiary-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "UW Oshkosh BestiaryTests/A Wisconsin BestiaryTests-Info.plist";
+				PRODUCT_NAME = "A Wisconsin BestiaryTests";
+				TEST_HOST = "";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		D852871E1943943500DE5424 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UW Oshkosh Bestiary/A Wisconsin Bestiary-Prefix.pch";
+				INFOPLIST_FILE = "UW Oshkosh BestiaryTests/A Wisconsin BestiaryTests-Info.plist";
+				PRODUCT_NAME = "A Wisconsin BestiaryTests";
+				TEST_HOST = "";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D85286E21943943500DE5424 /* Build configuration list for PBXProject "A Wisconsin Bestiary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D85287171943943500DE5424 /* Debug */,
+				D85287181943943500DE5424 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D85287191943943500DE5424 /* Build configuration list for PBXNativeTarget "A Wisconsin Bestiary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D852871A1943943500DE5424 /* Debug */,
+				D852871B1943943500DE5424 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D852871C1943943500DE5424 /* Build configuration list for PBXNativeTarget "A Wisconsin BestiaryTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D852871D1943943500DE5424 /* Debug */,
+				D852871E1943943500DE5424 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D85286FE1943943500DE5424 /* UW_Oshkosh_Bestiary.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D85286FF1943943500DE5424 /* UW_Oshkosh_Bestiary.xcdatamodel */,
+			);
+			currentVersion = D85286FF1943943500DE5424 /* UW_Oshkosh_Bestiary.xcdatamodel */;
+			path = UW_Oshkosh_Bestiary.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = D85286DF1943943500DE5424 /* Project object */;
+}

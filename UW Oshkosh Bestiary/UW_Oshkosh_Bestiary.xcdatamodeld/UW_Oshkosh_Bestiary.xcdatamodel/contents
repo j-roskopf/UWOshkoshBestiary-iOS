@@ -21,6 +21,7 @@
         <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="observationalTechniqueOther" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photoUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="precipitation" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="precipitationMeasure" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pressure" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -34,6 +35,6 @@
         <attribute name="windSpeed" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Sighting" positionX="-63" positionY="-18" width="128" height="510"/>
+        <element name="Sighting" positionX="-63" positionY="-18" width="128" height="525"/>
     </elements>
 </model>

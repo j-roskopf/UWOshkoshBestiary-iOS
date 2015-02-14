@@ -14,7 +14,7 @@
 
 @required
 
--(void)audioSavedWithRecorder:(AVAudioRecorder *) recorderWithSound withPlayer :(AVAudioPlayer*) recorderWithSound;
+-(void)audioSavedWithRecorder:(AVAudioRecorder *) recorderWithSound withPlayer :(AVAudioPlayer*) recorderWithSound withURL:(NSString*)audioSavedURL;
 
 
 @end 

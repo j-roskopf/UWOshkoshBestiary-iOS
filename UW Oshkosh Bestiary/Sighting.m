@@ -42,5 +42,6 @@
 @dynamic windSpeed;
 @dynamic photoTime;
 @dynamic videoTime;
+@dynamic photoUrl;
 
 @end
