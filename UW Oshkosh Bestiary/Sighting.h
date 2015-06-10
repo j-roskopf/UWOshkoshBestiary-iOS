@@ -24,10 +24,8 @@
 @property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSString * ecosystem;
 @property (nonatomic, retain) NSString * email;
-@property (nonatomic, retain) NSString * firstName;
 @property (nonatomic, retain) NSString * group;
 @property (nonatomic, retain) NSData * image;
-@property (nonatomic, retain) NSString * lastName;
 @property (nonatomic, retain) NSString * latitude;
 @property (nonatomic, retain) NSString * longitude;
 @property (nonatomic, retain) NSString * observationalTechniqueOther;

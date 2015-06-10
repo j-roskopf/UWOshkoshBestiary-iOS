@@ -23,10 +23,8 @@
 @dynamic date;
 @dynamic ecosystem;
 @dynamic email;
-@dynamic firstName;
 @dynamic group;
 @dynamic image;
-@dynamic lastName;
 @dynamic latitude;
 @dynamic longitude;
 @dynamic observationalTechniqueOther;

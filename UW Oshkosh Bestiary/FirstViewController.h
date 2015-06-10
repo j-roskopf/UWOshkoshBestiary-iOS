@@ -18,7 +18,7 @@
 
 
 
-@interface FirstViewController : UIViewController <UIImagePickerControllerDelegate,CLLocationManagerDelegate, UITabBarControllerDelegate>
+@interface FirstViewController : UIViewController <UIImagePickerControllerDelegate,CLLocationManagerDelegate, UITabBarControllerDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, assign) BOOL existingSubmission;
 

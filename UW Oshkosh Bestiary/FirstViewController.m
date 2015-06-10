@@ -20,11 +20,10 @@
 
 
 @interface FirstViewController () <CountyDelegate,GroupDelegate,AudioDelegate,WeatherChangedAfterError>
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *groupPhylaTextField;
 @property (weak, nonatomic) IBOutlet UILabel *countyTextField;
-@property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
+//@property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
+//@property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *commonNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *speciesTextField;
@@ -35,6 +34,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *additionalTextField;
 @property (weak, nonatomic) IBOutlet UITextField *longitudeTextField;
 @property (weak, nonatomic) IBOutlet UITextField *latitudeTextField;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UITextView *tosText;
 
 @property (weak, nonatomic) IBOutlet UITextField *altitudeTextField;
 @property (weak, nonatomic) IBOutlet UIImageView *imageOutlet;
@@ -62,6 +63,8 @@ CLLocationManager *locationManager;
     UIGestureRecognizer *tapper;
     
     NSString* URL_FOR_SUBMISSION;
+    
+    CGRect imageRect;
     
     NSURL* photoURL;
     NSData* photoData;
@@ -99,6 +102,9 @@ CLLocationManager *locationManager;
     //Used to store the time of the selected photo / video
     NSString *photoTime;
     NSString *videoTime;
+    int yValue;
+    int amountToAdd;
+    id senderToUse;
 
 }
 - (IBAction)capturePicture:(id)sender {
@@ -140,8 +146,8 @@ CLLocationManager *locationManager;
     audioData = nil;
     audioUrl = @"";
     
-    _firstNameTextField.text = @"";
-    _lastNameTextField.text = @"";
+    //_firstNameTextField.text = @"";
+    //_lastNameTextField.text = @"";
     _emailTextField.text = @"";
     
     [_affiliationSegControl setSelectedSegmentIndex:0];
@@ -180,59 +186,69 @@ CLLocationManager *locationManager;
 // yes button callback for clearing submission
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:
 (NSInteger)buttonIndex {
-    if (buttonIndex == 1) {
+    if(alertView.tag == 100){
+        //100 is the tag after the alerview alerting them to a nil phototime
         
-        //Sets video to null
-        _videoURL = nil;
+        ActionSheetDatePicker *actionSheetPicker = [[ActionSheetDatePicker alloc] initWithTitle:@"When did the sighting occur" datePickerMode:UIDatePickerModeDateAndTime selectedDate:[NSDate date] target:self action:@selector(dateWasSelected:element:) origin:senderToUse];
+        actionSheetPicker.hideCancel = YES;
+        [actionSheetPicker showActionSheetPicker];
         
-        //Sets the image back to the gray square
-        UIColor *color = [UIColor lightGrayColor];
-        UIImage *image = [self imageWithColor:color];
-        
-        //set the image to be a gray square
-        _imageOutlet.image = image;
-        
-        audioData = nil;
-        audioUrl = @"";
-        
-        _firstNameTextField.text = @"";
-        _lastNameTextField.text = @"";
-        _emailTextField.text = @"";
-
-        [_affiliationSegControl setSelectedSegmentIndex:0];
-
-        
-        _groupPhylaTextField.text = @"Group/Phyla";
-        _commonNameTextField.text = @"";
-        _speciesTextField.text = @"";
-        _amountTextField.text = @"";
-        _behavioralTextField.text = @"";
-        _countyTextField.text = @"County";
-        
-
-        [_observationTechSegControl setSelectedSegmentIndex:0];
-
-        _observationTextField.text = @"";
-        _ecosystemTextField.text = @"";
-        _additionalTextField.text = @"";
-        _longitudeTextField.text = @"";
-        _latitudeTextField.text = @"";
-        _altitudeTextField.text = @"";
-        
-        rain = 0;
-        temperature = 0;
-        windSpeed = 0;
-        windDirection = 0;
-        pressure = 0;
-        precipitationMeasure = @"3h";
-        
-
-        [_locationSegControl setSelectedSegmentIndex:0];
-        
-        _existingSubmission = NO;
-
-
+    }else{
+        if (buttonIndex == 1) {
+            
+            //Sets video to null
+            _videoURL = nil;
+            
+            //Sets the image back to the gray square
+            UIColor *color = [UIColor lightGrayColor];
+            UIImage *image = [self imageWithColor:color];
+            
+            //set the image to be a gray square
+            _imageOutlet.image = image;
+            
+            audioData = nil;
+            audioUrl = @"";
+            
+            //_firstNameTextField.text = @"";
+            //_lastNameTextField.text = @"";
+            _emailTextField.text = @"";
+            
+            [_affiliationSegControl setSelectedSegmentIndex:0];
+            
+            
+            _groupPhylaTextField.text = @"Group/Phyla";
+            _commonNameTextField.text = @"";
+            _speciesTextField.text = @"";
+            _amountTextField.text = @"";
+            _behavioralTextField.text = @"";
+            _countyTextField.text = @"County";
+            
+            
+            [_observationTechSegControl setSelectedSegmentIndex:0];
+            
+            _observationTextField.text = @"";
+            _ecosystemTextField.text = @"";
+            _additionalTextField.text = @"";
+            _longitudeTextField.text = @"";
+            _latitudeTextField.text = @"";
+            _altitudeTextField.text = @"";
+            
+            rain = 0;
+            temperature = 0;
+            windSpeed = 0;
+            windDirection = 0;
+            pressure = 0;
+            precipitationMeasure = @"3h";
+            
+            
+            [_locationSegControl setSelectedSegmentIndex:0];
+            
+            _existingSubmission = NO;
+            
+            
+        }
     }
+
 }
 
 //Method for handling 'add photo button'
@@ -388,8 +404,7 @@ CLLocationManager *locationManager;
             }];
             
             //If date = nil, that means the user took a new photo, so the video time will just be a new time stamp. If it's not null, then the date is of the time the file was created
-            if(date == nil)
-            {
+
                 NSDate *currentDate = [NSDate date];
                 photoTime = [currentDate descriptionWithLocale:currentLocale];
                 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -399,11 +414,7 @@ CLLocationManager *locationManager;
 
                 NSString *stringFromDate = [dateFormatter stringFromDate:[NSDate date]];
                 NSLog(@"today : %@", stringFromDate);
-            }
-            else
-            {
-                photoTime = [date descriptionWithLocale:currentLocale];
-            }
+
         
             
         } failureBlock:nil];
@@ -420,10 +431,36 @@ CLLocationManager *locationManager;
     
 }
 
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
+{
+ 
+    NSURL *url = [NSURL URLWithString:@"http://104.131.21.214/awb_tos.php"];
+    [[UIApplication sharedApplication] openURL:url];
+    NSLog(@"In should interact with url");
+    return YES;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init] ;
+    [paragraphStyle setAlignment:NSTextAlignmentCenter];
+    
+    //NSString* text = @"I have read and agree to the \nTerms of Service \nand verify that I am at least 13 years of age";
+    NSString* text = @"I have read and agree to the Terms of Service and I verify that I am at least 13 years of age. NOTE: Please have a parent or guardian contact awisconsinbestiary@gmail.com to set up parental permission if you are under 13 years of age. If you do not check this box you are declining to submit to A Wisconsin Bestiary, Inc.";
+    NSMutableAttributedString * string = [[NSMutableAttributedString alloc] initWithString:text];
+    [string addAttribute:NSLinkAttributeName value: @"http://awisconsinbestiary.org/terms-of-use" range: NSMakeRange(29, 17)];
+    [string addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [string length])];
+    [string addAttribute:NSFontAttributeName
+                  value:[UIFont systemFontOfSize:16.0]
+                  range:NSMakeRange(0, string.length)];
+
+
+
+    _tosText.attributedText = string;
     
     //Setup progress
     indicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
@@ -435,6 +472,8 @@ CLLocationManager *locationManager;
 
     //Hasnt been an internet connection error yet
     _internetError = NO;
+    
+    imageRect = _imageOutlet.frame;
     
     //Registers observer for keyboard being shown/hidden
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -474,8 +513,8 @@ CLLocationManager *locationManager;
         NSString *email = [[NSUserDefaults standardUserDefaults]
                            stringForKey:@"email"];
         
-        _firstNameTextField.text = firstName;
-        _lastNameTextField.text = lastName;
+        //_firstNameTextField.text = firstName;
+        //_lastNameTextField.text = lastName;
         _emailTextField.text = email;
         
         
@@ -515,8 +554,8 @@ CLLocationManager *locationManager;
         _videoURL = [NSURL URLWithString:_existingSighting.videoUrl];
         photoURL = [NSURL URLWithString:_existingSighting.photoUrl];
         
-        _firstNameTextField.text = _existingSighting.firstName;
-        _lastNameTextField.text = _existingSighting.lastName;
+       // _firstNameTextField.text = _existingSighting.firstName;
+        //_lastNameTextField.text = _existingSighting.lastName;
         _emailTextField.text = _existingSighting.email;
         
         if([_existingSighting.affiliation isEqualToString:@"UW Oshkosh"])
@@ -579,6 +618,9 @@ CLLocationManager *locationManager;
             [_locationSegControl setSelectedSegmentIndex:2];
         }
         
+        photoTime = _existingSighting.photoTime;
+        NSLog([NSString stringWithFormat:@"SETTING PHOTO TIME TO %@",photoTime]);
+        
         
         
         
@@ -597,9 +639,38 @@ CLLocationManager *locationManager;
     if(_tosSwitch.isOn)
     {
         _scrollView.hidden = NO;
+        _tosText.hidden = YES;
+        //get frame
+        CGRect newFrame = _tosSwitch.frame;
+        //set y value to be old y + height
+        yValue = newFrame.origin.y;
+        
+        CGRect tosHeight = _tosText.frame;
+        
+        newFrame.origin.y = newFrame.origin.y - tosHeight.size.height;
+        NSLog([NSString stringWithFormat:@"MINUSING BY %f",0+tosHeight.size.height]);
+        _tosSwitch.frame = newFrame;
+        CGRect scrollFrame = _scrollView.frame;
+        scrollFrame.origin.y = scrollFrame.origin.y - tosHeight.size.height;
+        scrollFrame.size.height = scrollFrame.size.height + tosHeight.size.height;
+        _scrollView.frame = scrollFrame;
+        amountToAdd = tosHeight.size.height;
+        
     }
     else{
         _scrollView.hidden = YES;
+        _tosText.hidden = NO;
+        CGRect newFrame = _tosSwitch.frame;
+        NSLog([NSString stringWithFormat:@"SETTING BACK TO TO %i",yValue]);
+        newFrame.origin.y = yValue;
+        _tosSwitch.frame = newFrame;
+        
+        CGRect scrollFrame = _scrollView.frame;
+        scrollFrame.origin.y = scrollFrame.origin.y + amountToAdd;
+        scrollFrame.size.height = scrollFrame.size.height - amountToAdd;
+        _scrollView.frame = scrollFrame;
+
+        
 
     }
 
@@ -653,6 +724,7 @@ CLLocationManager *locationManager;
 
 -(void)viewDidLayoutSubviews
 {
+    NSLog(@"VIEW DID LAYOUT SUBVIEW");
     float thisy,maxy=0;
     for (UIView *view in _scrollView.subviews) {
         thisy=view.frame.origin.y+view.frame.size.height;
@@ -661,6 +733,19 @@ CLLocationManager *locationManager;
     _scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width,maxy+20);
     
     [_scrollView setContentOffset:offsetBeforeTransition animated: NO];
+    
+    if(_tosSwitch.isOn)
+    {
+        CGRect scrollFrame = _scrollView.frame;
+        scrollFrame.origin.y = scrollFrame.origin.y - amountToAdd;
+        scrollFrame.size.height = scrollFrame.size.height + amountToAdd;
+        _scrollView.frame = scrollFrame;
+        
+        
+        CGRect tosSwitch = _tosSwitch.frame;
+        tosSwitch.origin.y = tosSwitch.origin.y - amountToAdd;
+        _tosSwitch.frame = tosSwitch;
+    }
     
 
 }
@@ -791,12 +876,12 @@ CLLocationManager *locationManager;
         if(_existingSighting)
         {
             
-            [_existingSighting setValue:[_firstNameTextField text] forKey:@"firstName"];
-            [_existingSighting setValue:[_lastNameTextField text] forKey:@"lastName"];
+            //[_existingSighting setValue:[_firstNameTextField text] forKey:@"firstName"];
+            //[_existingSighting setValue:[_lastNameTextField text] forKey:@"lastName"];
             [_existingSighting setValue:[_emailTextField text] forKey:@"email"];
             
             if ([_affiliationSegControl selectedSegmentIndex] == 0) {
-                [_existingSighting setValue:@"University of Wisconsin - Oshkosh" forKey:@"affiliation"];
+                [_existingSighting setValue:@"Other" forKey:@"affiliation"];
             } else if ([_affiliationSegControl selectedSegmentIndex] == 1) {
                 [_existingSighting setValue:@"Other" forKey:@"affiliation"];
             }
@@ -805,7 +890,7 @@ CLLocationManager *locationManager;
             
             [_existingSighting setValue:[_commonNameTextField text] forKey:@"commonName"];
             [_existingSighting setValue:[_speciesTextField text] forKey:@"species"];
-            [_existingSighting setValue:[_firstNameTextField text] forKey:@"firstName"];
+            //[_existingSighting setValue:[_firstNameTextField text] forKey:@"firstName"];
             [_existingSighting setValue:[_amountTextField text] forKey:@"amount"];
             [_existingSighting setValue:[_behavioralTextField text] forKey:@"behavorialDescription"];
             [_existingSighting setValue:[_speciesTextField text] forKey:@"species"];
@@ -903,8 +988,8 @@ CLLocationManager *locationManager;
             
             //Saving form data
             
-            [s setValue:[_firstNameTextField text] forKey:@"firstName"];
-            [s setValue:[_lastNameTextField text] forKey:@"lastName"];
+            //[s setValue:[_firstNameTextField text] forKey:@"firstName"];
+            //[s setValue:[_lastNameTextField text] forKey:@"lastName"];
             [s setValue:[_emailTextField text] forKey:@"email"];
             
             if(photoURL != nil){
@@ -914,7 +999,7 @@ CLLocationManager *locationManager;
 
             
             if ([_affiliationSegControl selectedSegmentIndex] == 0) {
-                [s setValue:@"University of Wisconsin - Oshkosh" forKey:@"affiliation"];
+                [s setValue:@"Other" forKey:@"affiliation"];
             } else if ([_affiliationSegControl selectedSegmentIndex] == 1) {
                 [s setValue:@"Other" forKey:@"affiliation"];
             }
@@ -923,7 +1008,7 @@ CLLocationManager *locationManager;
             
             [s setValue:[_commonNameTextField text] forKey:@"commonName"];
             [s setValue:[_speciesTextField text] forKey:@"species"];
-            [s setValue:[_firstNameTextField text] forKey:@"firstName"];
+            //[s setValue:[_firstNameTextField text] forKey:@"firstName"];
             [s setValue:[_amountTextField text] forKey:@"amount"];
             [s setValue:[_behavioralTextField text] forKey:@"behavorialDescription"];
             [s setValue:[_speciesTextField text] forKey:@"species"];
@@ -1014,8 +1099,8 @@ CLLocationManager *locationManager;
         // Store the first name/ last name / email
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
-        [defaults setObject:[_firstNameTextField text] forKey:@"firstName"];
-        [defaults setObject:[_lastNameTextField text] forKey:@"lastName"];
+        //[defaults setObject:[_firstNameTextField text] forKey:@"firstName"];
+        //[defaults setObject:[_lastNameTextField text] forKey:@"lastName"];
         [defaults setObject:[_emailTextField text] forKey:@"email"];
 
         [defaults synchronize];
@@ -1078,11 +1163,17 @@ CLLocationManager *locationManager;
              
              NSString *tempPressure = responseObject[@"main"][@"pressure"];
              pressure = [tempPressure floatValue];
-             
+             NSLog(@"HEEEERE");
              //Open weather can return three different formats for rain
              NSString *rain1 = responseObject[@"rain"][@"1h"];
+             NSLog(rain1);
              NSString *rain2 = responseObject[@"rain"][@"2h"];
+             NSLog(rain2);
+
              NSString *rain3 = responseObject[@"rain"][@"3h"];
+             
+             NSLog(rain3);
+
              
              
              if(rain1 == nil && rain2 == nil)
@@ -1205,17 +1296,7 @@ CLLocationManager *locationManager;
 
     
     
-    if([_firstNameTextField.text isEqual: @""])
-    {
-        messageString = @"Please enter in your first name";
-        errorInSubmission = YES;
-    }
-    else if([_lastNameTextField.text  isEqual: @""])
-    {
-        messageString = @"Please enter in your last name";
-        errorInSubmission = YES;
-    }
-    else if([_emailTextField.text  isEqual: @""])
+    if([_emailTextField.text  isEqual: @""])
     {
         messageString = @"Please enter in your email";
         errorInSubmission = YES;
@@ -1243,10 +1324,15 @@ CLLocationManager *locationManager;
         //Time
         if(photoTime == nil){
             
+            senderToUse = sender;
             
-            ActionSheetDatePicker *actionSheetPicker = [[ActionSheetDatePicker alloc] initWithTitle:@"Select a Date" datePickerMode:UIDatePickerModeDateAndTime selectedDate:[NSDate date] target:self action:@selector(dateWasSelected:element:) origin:sender];
-            actionSheetPicker.hideCancel = YES;
-            [actionSheetPicker showActionSheetPicker];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error collectiong time" message:@"Please estimate a date when the photograph/sighting occurred" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil,nil];
+            
+            alert.tag = 100;
+            [alert show];
+            
+            
+
             
             
         }else{
@@ -1260,6 +1346,9 @@ CLLocationManager *locationManager;
     
     
 }
+
+
+
 - (void)dateWasSelected:(NSDate *)selectedDate element:(id)element {
     [indicator startAnimating];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
@@ -1272,28 +1361,30 @@ CLLocationManager *locationManager;
     [manager POST:URL_FOR_SUBMISSION parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                 
         
-        [formData appendPartWithFormData:[[_firstNameTextField text] dataUsingEncoding:NSUTF8StringEncoding]
-                                    name:@"first-name"];
-        [formData appendPartWithFormData:[[_lastNameTextField text] dataUsingEncoding:NSUTF8StringEncoding]
-                                    name:@"last-name"];
+        [formData appendPartWithFormData:[@"" dataUsingEncoding:NSUTF8StringEncoding] name:@"first-name"];
+        [formData appendPartWithFormData:[@"" dataUsingEncoding:NSUTF8StringEncoding] name:@"last-name"];
         [formData appendPartWithFormData:[[_emailTextField text] dataUsingEncoding:NSUTF8StringEncoding]
          
                                     name:@"replyto"];
         [formData appendPartWithFormData:[@"Bestiary Submission" dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"topic"];
+        
+        
         if ([_affiliationSegControl selectedSegmentIndex] == 0) {
-            [formData appendPartWithFormData:[@"other1" dataUsingEncoding:NSUTF8StringEncoding]
+            [formData appendPartWithFormData:[@"other" dataUsingEncoding:NSUTF8StringEncoding]
                                         name:@"school-affiliation"];
             
         } else if ([_affiliationSegControl selectedSegmentIndex] == 1) {
-            [formData appendPartWithFormData:[@"other1" dataUsingEncoding:NSUTF8StringEncoding]
+            [formData appendPartWithFormData:[@"other" dataUsingEncoding:NSUTF8StringEncoding]
                                         name:@"school-affiliation"];
         }
         
-        [formData appendPartWithFormData:[@"ameba" dataUsingEncoding:NSUTF8StringEncoding]
+        [formData appendPartWithFormData:[[_groupPhylaTextField text] dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"animal"];
+        
         [formData appendPartWithFormData:[[_commonNameTextField text] dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"common-name"];
+        
         [formData appendPartWithFormData:[[_speciesTextField text] dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"species"];
         [formData appendPartWithFormData:[[_amountTextField text] dataUsingEncoding:NSUTF8StringEncoding]
@@ -1370,7 +1461,7 @@ CLLocationManager *locationManager;
                                         name:@"precipitation-inches"];
         }else{
             
-            [formData appendPartWithFormData:[precipitationMeasure dataUsingEncoding:NSUTF8StringEncoding]
+            [formData appendPartWithFormData:[[[NSNumber numberWithFloat:rain] stringValue] dataUsingEncoding:NSUTF8StringEncoding]
                                         name:@"precipitation-inches"];
         }
         
@@ -1428,7 +1519,8 @@ CLLocationManager *locationManager;
         }
         
         [formData appendPartWithFormData:[[_additionalTextField text] dataUsingEncoding:NSUTF8StringEncoding]
-                                    name:@"specific-text-you-would-like-used-to-aknowledge-photograph-interesting-anecdote-submission"];
+                                    name:@"specific-text-you-would-like-used-to-acknowledge-photograph-interesting-anecdote-submission"];
+        
         
         [formData appendPartWithFormData:[@"Submit" dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"form_submit"];
@@ -1480,6 +1572,9 @@ CLLocationManager *locationManager;
         [formData appendPartWithFormData:[[dateExploded objectAtIndex: 5] dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"date-photo-was-taken_ampm"];
         
+        [formData appendPartWithFormData:[[_ecosystemTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"ecosystem-type"];
+        
         
         
         
@@ -1506,15 +1601,20 @@ CLLocationManager *locationManager;
         
         
         if(statuscode== 200) {
-            [self.navigationController popViewControllerAnimated:YES];
-
             //dismiss progrees
             //delete entry
+            [self.navigationController popViewControllerAnimated:YES];
+            
+            
             if(_existingSubmission)
             {
                 NSLog(@"YEAH ITS EXISTING SIGHTING");
-                [[_existingSighting managedObjectContext]deleteObject:_existingSighting];
+                
 
+                [[self managedObjectContext] deleteObject:_existingSighting];
+                if (![context save:&error]) {
+                    NSLog(@"Couldn't save: %@", error);
+                }
             }
             
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Submission successfully submitted" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil,nil];
@@ -1552,9 +1652,9 @@ CLLocationManager *locationManager;
     [manager POST:URL_FOR_SUBMISSION parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
         
-        [formData appendPartWithFormData:[[_firstNameTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+        [formData appendPartWithFormData:[@"" dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"first-name"];
-        [formData appendPartWithFormData:[[_lastNameTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+        [formData appendPartWithFormData:[@"" dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"last-name"];
         [formData appendPartWithFormData:[[_emailTextField text] dataUsingEncoding:NSUTF8StringEncoding]
          
@@ -1562,15 +1662,15 @@ CLLocationManager *locationManager;
         [formData appendPartWithFormData:[@"Bestiary Submission" dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"topic"];
         if ([_affiliationSegControl selectedSegmentIndex] == 0) {
-            [formData appendPartWithFormData:[@"other1" dataUsingEncoding:NSUTF8StringEncoding]
+            [formData appendPartWithFormData:[@"other" dataUsingEncoding:NSUTF8StringEncoding]
                                         name:@"school-affiliation"];
             
         } else if ([_affiliationSegControl selectedSegmentIndex] == 1) {
-            [formData appendPartWithFormData:[@"other1" dataUsingEncoding:NSUTF8StringEncoding]
+            [formData appendPartWithFormData:[@"other" dataUsingEncoding:NSUTF8StringEncoding]
                                         name:@"school-affiliation"];
         }
         
-        [formData appendPartWithFormData:[@"ameba" dataUsingEncoding:NSUTF8StringEncoding]
+        [formData appendPartWithFormData:[[_groupPhylaTextField text] dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"animal"];
         [formData appendPartWithFormData:[[_commonNameTextField text] dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"common-name"];
@@ -1650,7 +1750,7 @@ CLLocationManager *locationManager;
                                         name:@"precipitation-inches"];
         }else{
             
-            [formData appendPartWithFormData:[precipitationMeasure dataUsingEncoding:NSUTF8StringEncoding]
+            [formData appendPartWithFormData:[[[NSNumber numberWithFloat:rain] stringValue] dataUsingEncoding:NSUTF8StringEncoding]
                                         name:@"precipitation-inches"];
         }
         
@@ -1708,7 +1808,7 @@ CLLocationManager *locationManager;
         }
         
         [formData appendPartWithFormData:[[_additionalTextField text] dataUsingEncoding:NSUTF8StringEncoding]
-                                    name:@"specific-text-you-would-like-used-to-aknowledge-photograph-interesting-anecdote-submission"];
+                                    name:@"specific-text-you-would-like-used-to-acknowledge-photograph-interesting-anecdote-submission"];
         
         [formData appendPartWithFormData:[@"Submit" dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"form_submit"];
@@ -1757,6 +1857,9 @@ CLLocationManager *locationManager;
                                     name:@"date-photo-was-taken_ampm"];
         
         
+        [formData appendPartWithFormData:[[_ecosystemTextField text] dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"ecosystem-type"];
+        
         
         
         
@@ -1793,6 +1896,9 @@ CLLocationManager *locationManager;
             {
                 NSLog(@"YEAH ITS EXISTING SIGHTING");
                 [[_existingSighting managedObjectContext]deleteObject:_existingSighting];
+                if (![context save:&error]) {
+                    NSLog(@"Couldn't save: %@", error);
+                }
             }
             
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Submission successfully submitted" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil,nil];
