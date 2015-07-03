@@ -74,6 +74,7 @@ CLLocationManager *locationManager;
     
     //Holds if the user has at least ios6
     BOOL atLeastIOS6;
+    BOOL justClickedOnButton;
     
     //Holds the recorded audio file
     AVAudioRecorder *recorder;
@@ -365,6 +366,10 @@ CLLocationManager *locationManager;
 
         UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
         _imageOutlet.image = image;
+        CGRect frameRect = _imageOutlet.frame;
+        frameRect.size.width = 50;
+        _imageOutlet.frame = frameRect;
+
         
         //TODO SET DATE AND TIME PICTURE WAS TAKEN
         if(atLeastIOS6){
@@ -1166,13 +1171,13 @@ CLLocationManager *locationManager;
              NSLog(@"HEEEERE");
              //Open weather can return three different formats for rain
              NSString *rain1 = responseObject[@"rain"][@"1h"];
-             NSLog(rain1);
+             //NSLog(rain1);
              NSString *rain2 = responseObject[@"rain"][@"2h"];
-             NSLog(rain2);
+             //NSLog(rain2);
 
              NSString *rain3 = responseObject[@"rain"][@"3h"];
              
-             NSLog(rain3);
+             //NSLog(rain3);
 
              
              
@@ -1211,7 +1216,7 @@ CLLocationManager *locationManager;
                                                      cancelButtonTitle:@"OK"
                                                      otherButtonTitles:nil];
              
-             [message show];
+             //[message show];
              
              _internetError = YES;
          }];
@@ -1221,7 +1226,12 @@ CLLocationManager *locationManager;
 - (void)locationManager: (CLLocationManager *)manager
        didFailWithError: (NSError *)error
 {
-    [manager stopUpdatingLocation];
+    [manager stopUpdatingHeading];
+    [manager stopUpdatingHeading];
+
+    //Stops finding location to save battery
+    [locationManager stopUpdatingLocation];
+    [locationManager stopUpdatingHeading];
     NSLog(@"error%@",error);
     switch([error code])
     {
@@ -1233,7 +1243,10 @@ CLLocationManager *locationManager;
             break;
         case kCLErrorDenied:{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location Error" message:@"User has denied to use current Location " delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-            [alert show];
+            if(justClickedOnButton == YES){
+                justClickedOnButton = NO;
+                [alert show];
+            }
         }
             break;
         default:
@@ -1279,6 +1292,7 @@ CLLocationManager *locationManager;
 }
 - (IBAction)collectLocationManually:(id)sender {
     
+    justClickedOnButton = YES;
     //Starts location object
     if(locationManager == nil)
         locationManager = [[CLLocationManager alloc]init];
@@ -1301,12 +1315,12 @@ CLLocationManager *locationManager;
         messageString = @"Please enter in your email";
         errorInSubmission = YES;
     }
-    else if([_groupPhylaTextField.text  isEqual: @"Group/Phyla"])
+    else if([_groupPhylaTextField.text  isEqual: @"* Group/Phyla"])
     {
         messageString = @"Please choose a Group/Phyla";
         errorInSubmission = YES;
     }
-    else if([_countyTextField.text  isEqual: @"County"])
+    else if([_countyTextField.text  isEqual: @"* County"])
     {
         messageString = @"Please choose a county";
         errorInSubmission = YES;
@@ -1402,22 +1416,23 @@ CLLocationManager *locationManager;
         
         if ([_observationTechSegControl selectedSegmentIndex] == 0) {
             [formData appendPartWithFormData:[@"Casual" dataUsingEncoding:NSUTF8StringEncoding]
-                                        name:@"observational-technique-1"];
+                                        name:@"observation-technique-1"];
         } else if ([_observationTechSegControl selectedSegmentIndex] == 1) {
             [formData appendPartWithFormData:[@"Stationary" dataUsingEncoding:NSUTF8StringEncoding]
-                                        name:@"observational-technique-1"];
+                                        name:@"observation-technique-1"];
         }
         else if ([_observationTechSegControl selectedSegmentIndex] == 2) {
             [formData appendPartWithFormData:[@"Traveling" dataUsingEncoding:NSUTF8StringEncoding]
-                                        name:@"observational-technique-1"];
+                                        name:@"observation-technique-1"];
+            
         }
         else if ([_observationTechSegControl selectedSegmentIndex] == 3) {
             [formData appendPartWithFormData:[@"Area" dataUsingEncoding:NSUTF8StringEncoding]
-                                        name:@"observational-technique-1"];
+                                        name:@"observation-technique-1"];
         }
         
         [formData appendPartWithFormData:[[_observationTextField text] dataUsingEncoding:NSUTF8StringEncoding]
-                                    name:@"observational-technique"];
+                                    name:@"observation-technique"];
         
         
         
@@ -1591,6 +1606,8 @@ CLLocationManager *locationManager;
         [UIApplication sharedApplication].networkActivityIndicatorVisible = FALSE;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         //NSLog(@"Error: %@", operation.responseString);
+        //I know this is in the error block. but because awisconsinbestiary doesn't return a valid response, the failure block is called.
+
         [indicator stopAnimating];
         [UIApplication sharedApplication].networkActivityIndicatorVisible = FALSE;
         //Success
@@ -1609,12 +1626,7 @@ CLLocationManager *locationManager;
             if(_existingSubmission)
             {
                 NSLog(@"YEAH ITS EXISTING SIGHTING");
-                
-
-                [[self managedObjectContext] deleteObject:_existingSighting];
-                if (![context save:&error]) {
-                    NSLog(@"Couldn't save: %@", error);
-                }
+                [self deleteObjectInCoreData];
             }
             
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Submission successfully submitted" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil,nil];
@@ -1691,22 +1703,22 @@ CLLocationManager *locationManager;
         
         if ([_observationTechSegControl selectedSegmentIndex] == 0) {
             [formData appendPartWithFormData:[@"Casual" dataUsingEncoding:NSUTF8StringEncoding]
-                                        name:@"observational-technique-1"];
+                                        name:@"observation-technique-1"];
         } else if ([_observationTechSegControl selectedSegmentIndex] == 1) {
             [formData appendPartWithFormData:[@"Stationary" dataUsingEncoding:NSUTF8StringEncoding]
-                                        name:@"observational-technique-1"];
+                                        name:@"observation-technique-1"];
         }
         else if ([_observationTechSegControl selectedSegmentIndex] == 2) {
             [formData appendPartWithFormData:[@"Traveling" dataUsingEncoding:NSUTF8StringEncoding]
-                                        name:@"observational-technique-1"];
+                                        name:@"observation-technique-1"];
         }
         else if ([_observationTechSegControl selectedSegmentIndex] == 3) {
             [formData appendPartWithFormData:[@"Area" dataUsingEncoding:NSUTF8StringEncoding]
-                                        name:@"observational-technique-1"];
+                                        name:@"observation-technique-1"];
         }
         
         [formData appendPartWithFormData:[[_observationTextField text] dataUsingEncoding:NSUTF8StringEncoding]
-                                    name:@"observational-technique"];
+                                    name:@"observation-technique"];
         
         
         
@@ -1801,7 +1813,7 @@ CLLocationManager *locationManager;
             
             
             [formData appendPartWithFileData:audioData name:@"audio_file" fileName:@"audio_file.m4a" mimeType:@"application/octet-stream"];
-             
+            
 
             
             
@@ -1879,7 +1891,7 @@ CLLocationManager *locationManager;
         [indicator stopAnimating];
         [UIApplication sharedApplication].networkActivityIndicatorVisible = FALSE;
         //NSLog(@"Error: %@", operation.responseString);
-        
+        //I know this is in the error block. but because awisconsinbestiary doesn't return a valid response, the failure block is called.
         
         NSHTTPURLResponse *response = (NSHTTPURLResponse *)operation.response;
         int statuscode = response.statusCode;
@@ -1895,10 +1907,8 @@ CLLocationManager *locationManager;
             if(_existingSubmission)
             {
                 NSLog(@"YEAH ITS EXISTING SIGHTING");
-                [[_existingSighting managedObjectContext]deleteObject:_existingSighting];
-                if (![context save:&error]) {
-                    NSLog(@"Couldn't save: %@", error);
-                }
+                [self deleteObjectInCoreData];
+
             }
             
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Submission successfully submitted" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil,nil];
@@ -1922,6 +1932,15 @@ CLLocationManager *locationManager;
     
     
     
+}
+
+-(void)deleteObjectInCoreData{
+    NSLog(@"Here");
+    NSError* error;
+    [[self managedObjectContext] deleteObject:_existingSighting];
+    if (![[self managedObjectContext]  save:&error]) {
+        NSLog(@"Couldn't save 1 : %@", error);
+    }
 }
 
 

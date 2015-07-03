@@ -23,6 +23,7 @@
     int rowSelected;
     FirstViewController *firstViewController;
     NSManagedObjectContext *context;
+    NSIndexPath* indexClicked;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -40,10 +41,14 @@
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(handleLongPress:)];
-    lpgr.minimumPressDuration = 2.0; //seconds
+    lpgr.minimumPressDuration = 1.0; //seconds
     lpgr.delegate = self;
     
     [self.tableView addGestureRecognizer:lpgr];
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    context = [appDelegate managedObjectContext];
     
     
 
@@ -159,27 +164,57 @@
         
         CGPoint p = [gestureRecognizer locationInView:self.tableView];
         
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Detected long press"
-                                                          message:@"There has been an error. No weather data will be collected"
-                                                         delegate:nil
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
+
+        
+        indexClicked = indexPath;
+        
+
+        
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Delete item?"
+                                                          message:@"This cannot be undone"
+                                                         delegate:self
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
+        
+        message.tag = 2222;
         
         [message show];
         
         
         
-        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
-        if (indexPath == nil) {
-            NSLog(@"long press on table view but not on a row");
-        } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-            NSLog(@"long press on table view at row %d", indexPath.row);
-        } else {
-            NSLog(@"gestureRecognizer.state = %d", gestureRecognizer.state);
-        }
+
         
     }
 
+}
+
+// yes button callback for clearing submission
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:
+(NSInteger)buttonIndex {
+    if(alertView.tag == 2222){
+
+  
+        
+        Sighting *s = [mutableArray objectAtIndex:[indexClicked row]];
+        
+        //delete object
+        [mutableArray removeObjectAtIndex:[indexClicked row]];
+        
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexClicked] withRowAnimation:UITableViewRowAnimationFade];
+        
+        [self.tableView reloadData];
+        
+        NSLog(@"delete");
+        NSError* error;
+        [context deleteObject:s];
+        if (![context  save:&error]) {
+            NSLog(@"Couldn't save 12 : %@", error);
+        }
+        
+    }else{
+    }
+    
 }
 
 

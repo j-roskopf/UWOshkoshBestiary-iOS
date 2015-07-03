@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ExistingTableViewController : UITableViewController
+
+@interface ExistingTableViewController : UITableViewController <UIAlertViewDelegate>
 
 @end
 
