@@ -75,6 +75,7 @@ CLLocationManager *locationManager;
     //Holds if the user has at least ios6
     BOOL atLeastIOS6;
     BOOL justClickedOnButton;
+    BOOL comingFromChooseFromLibrary;
     
     //Holds the recorded audio file
     AVAudioRecorder *recorder;
@@ -113,9 +114,9 @@ CLLocationManager *locationManager;
     
 
     
-    //UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"Choose picture source" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo/Video",@"Choose From Library", nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"Choose picture source" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo",@"Choose From Library", nil];
     
-        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"Choose picture source" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", nil];
+    //UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"Choose picture source" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", nil];
     [actionSheet showInView:self.view];
     
 
@@ -154,12 +155,12 @@ CLLocationManager *locationManager;
     [_affiliationSegControl setSelectedSegmentIndex:0];
     
     
-    _groupPhylaTextField.text = @"Group/Phyla";
+    _groupPhylaTextField.text = @"* Group/Phyla";
     _commonNameTextField.text = @"";
     _speciesTextField.text = @"";
     _amountTextField.text = @"";
     _behavioralTextField.text = @"";
-    _countyTextField.text = @"County";
+    _countyTextField.text = @"* County";
     
     
     [_observationTechSegControl setSelectedSegmentIndex:0];
@@ -287,32 +288,32 @@ CLLocationManager *locationManager;
         
     } else if (buttonIndex == 1) {
         
-//        if ([UIImagePickerController isSourceTypeAvailable:
-//             UIImagePickerControllerSourceTypePhotoLibrary])
-//        {
-//            UIImagePickerController *imagePicker =
-//            [[UIImagePickerController alloc] init];
-//            
-//            imagePicker.delegate = self;
-//            
-//            imagePicker.sourceType =
-//            UIImagePickerControllerSourceTypePhotoLibrary;
-//            
-//            imagePicker.mediaTypes =
-//            @[(NSString *) kUTTypeImage,
-//              (NSString *) kUTTypeMovie];
-//            
-//            imagePicker.allowsEditing = YES;
-//            [self presentViewController:imagePicker
-//                               animated:YES completion:nil];
-//            
-//        }
-//        else{
-//            
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Can't access photo library" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil,nil];
-//            [alert show];
-//            
-//        }
+        if ([UIImagePickerController isSourceTypeAvailable:
+             UIImagePickerControllerSourceTypePhotoLibrary])
+        {
+            comingFromChooseFromLibrary = true;
+            UIImagePickerController *imagePicker =
+            [[UIImagePickerController alloc] init];
+        
+            imagePicker.delegate = self;
+        
+            imagePicker.sourceType =
+            UIImagePickerControllerSourceTypePhotoLibrary;
+        
+            imagePicker.mediaTypes =
+            @[(NSString *) kUTTypeImage];
+        
+            imagePicker.allowsEditing = YES;
+            [self presentViewController:imagePicker
+                               animated:YES completion:nil];
+        
+        }
+        else{
+        
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Can't access photo library" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil,nil];
+            [alert show];
+        
+      }
         
         
     }
@@ -396,29 +397,41 @@ CLLocationManager *locationManager;
             }
             
             NSDate *date = [asset valueForProperty:ALAssetPropertyDate];
-            
             NSLocale* currentLocale = [NSLocale currentLocale];
             
-            [assetsLibrary writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:^(NSURL *assetURL, NSError *error){
-                if (error) {
-                    NSLog(@"error");
-                } else {
-                    photoURL = assetURL;
-                    NSLog(@"url %@", assetURL.absoluteString);
-                }
-            }];
-            
-            //If date = nil, that means the user took a new photo, so the video time will just be a new time stamp. If it's not null, then the date is of the time the file was created
-
+            if(!comingFromChooseFromLibrary){
+                [assetsLibrary writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:^(NSURL *assetURL, NSError *error){
+                    if (error) {
+                        NSLog(@"error");
+                    } else {
+                        photoURL = assetURL;
+                        NSLog(@"url %@", assetURL.absoluteString);
+                    }
+                }];
+                
+                
+                //If date = nil, that means the user took a new photo, so the video time will just be a new time stamp. If it's not null, then the date is of the time the file was created
+                
                 NSDate *currentDate = [NSDate date];
                 photoTime = [currentDate descriptionWithLocale:currentLocale];
                 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
                 [dateFormatter setDateFormat:@"YYYY-MM-dd-hh-mm-a"];
                 photoTime = [dateFormatter stringFromDate:currentDate];
-
-
+                
+                
                 NSString *stringFromDate = [dateFormatter stringFromDate:[NSDate date]];
                 NSLog(@"today : %@", stringFromDate);
+            }else{
+                comingFromChooseFromLibrary = false;
+                NSLog(@"Here in else");
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"YYYY-MM-dd-hh-mm-a"];
+                NSLog(@"Todays date is %@",[dateFormatter stringFromDate:date]);
+                photoTime = [dateFormatter stringFromDate:date];
+            }
+
+            
+
 
         
             
@@ -449,6 +462,8 @@ CLLocationManager *locationManager;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    comingFromChooseFromLibrary = false;
 
     
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init] ;
@@ -1334,6 +1349,15 @@ CLLocationManager *locationManager;
     }
     else
     {
+        
+        // Store the first name/ last name / email
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        //[defaults setObject:[_firstNameTextField text] forKey:@"firstName"];
+        //[defaults setObject:[_lastNameTextField text] forKey:@"lastName"];
+        [defaults setObject:[_emailTextField text] forKey:@"email"];
+        
+        [defaults synchronize];
         
         //Time
         if(photoTime == nil){
